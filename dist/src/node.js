@@ -1,4 +1,4 @@
-var Note = React.createClass({displayName: "Note",
+var node = React.createClass({displayName: "node",
     getInitialState: function() {
         return {editing: false}
     },
@@ -57,6 +57,8 @@ var Note = React.createClass({displayName: "Note",
         }
     }
 });
+
+module.exports = node;
 
 
 
