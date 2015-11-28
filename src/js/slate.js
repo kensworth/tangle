@@ -46,11 +46,7 @@ var Board = React.createClass({
             );
     },
     proliferate: function() {
-        return (
-            for(i = 0; i < 5; i++) {
-                {this.add.bind(null, "node")};
-            }
-        );
+        this.add.bind(null, "node");
     },
     render: function() {
         return (<div className="board">

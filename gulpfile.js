@@ -36,4 +36,24 @@ gulp.task('watch', function(){
   gulp.watch(path.ALL, ['transform', 'copy', 'css']);
 });
 
+//build
+gulp.task('build', function(){
+  gulp.src(path.JS)
+    .pipe(react())
+    .pipe(concat(path.MINIFIED_OUT))
+    .pipe(uglify())
+    .pipe(gulp.dest(path.DEST_BUILD));
+});
+
+gulp.task('replaceHTML', function(){
+  gulp.src(path.HTML)
+    .pipe(htmlreplace({
+      'js': 'build/' + path.MINIFIED_OUT
+    }))
+    .pipe(gulp.dest(path.DEST));
+});
+
+//final
 gulp.task('default', ['watch']);
+
+gulp.task('production', ['replaceHTML', 'build']);

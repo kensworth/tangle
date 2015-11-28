@@ -45,6 +45,9 @@ var Board = React.createClass({displayName: "Board",
                 }, note.note)
             );
     },
+    proliferate: function() {
+        this.add.bind(null, "node");
+    },
     render: function() {
         return (React.createElement("div", {className: "board"}, 
                     this.state.notes.map(this.eachNote), 
