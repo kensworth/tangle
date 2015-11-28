@@ -7,15 +7,10 @@ var watchify = require('watchify');
 var reactify = require('reactify');
 var streamify = require('gulp-streamify');
 
-var react = require('gulp-react');
-var concat = require('gulp-concat');
-
 var path = {
   HTML: 'src/index.html',
   CSS: 'src/css/style.css',
-  JS: ['src/js/*.js', 'src/js/**/*.js'],
   HTMLCSS: ['src/index.html', 'src/css/style.css'],
-  ALL: ['src/js/*.js', 'src/js/**/*.js', 'src/index.html', 'src/css/style.css'],
   MINIFIED_OUT: 'build.min.js',
   OUT: 'build.js',
   DEST: 'dist',
@@ -32,18 +27,10 @@ gulp.task('copy', function(){
     .pipe(gulp.dest(path.DEST_CSS));
 });
 
-//insert begin
-gulp.task('transform', function(){
-  gulp.src(path.JS)
-    .pipe(react())
-    .pipe(gulp.dest(path.DEST_SRC));
-});
-//end
-
 gulp.task('watch', function() {
-  //gulp.watch(path.HTMLCSS, ['copy']);
+  gulp.watch(path.HTMLCSS, ['copy']);
 
-  /*var watcher  = watchify(browserify({
+  var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],
     transform: [reactify],
     debug: true,
@@ -56,15 +43,13 @@ gulp.task('watch', function() {
       .pipe(gulp.dest(path.DEST_SRC))
       console.log('Updated');
   })
-    .bundle().on('error', function(err) {
+    /*.bundle().on('error', function(err) {
       console.log(err.message)
       this.end();
-    })
+    })*/
     .bundle()
     .pipe(source(path.OUT))
-    .pipe(gulp.dest(path.DEST_SRC));*/
-
-  gulp.watch(path.ALL, ['transform', 'copy']);
+    .pipe(gulp.dest(path.DEST_SRC));
 });
 
 gulp.task('build', function(){
