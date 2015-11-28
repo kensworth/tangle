@@ -1,15 +1,30 @@
 {
-  "name": "bulletin-board",
-  "version": "0.0.1",
-  "description": "A bulletin board developed in React.",
-  "main": "Note.js",
-  "scripts": {
-    "start": "open http://localhost:4321 & httpster -p 4321"
-  },
-  "author": "Eve Porcello",
-  "license": "MIT",
+  "name": "react-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
   "dependencies": {
-    "httpster": "^1.0.1",
-    "react-tools": "^0.13.3"
-  }
+    "react-tools": "^0.13.3",
+    "httpster": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-html-replace": "^1.5.5",
+    "gulp-react": "^3.1.0",
+    "gulp-uglify": "^1.5.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kensworth/tangle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kensworth/tangle/issues"
+  },
+  "homepage": "https://github.com/kensworth/tangle#readme"
 }
