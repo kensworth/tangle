@@ -45,11 +45,18 @@ var Board = React.createClass({
                 >{note.note}</Note>
             );
     },
+    proliferate: function() {
+        return (
+            for(i = 0; i < 5; i++) {
+                {this.add.bind(null, "node")};
+            }
+        );
+    },
     render: function() {
         return (<div className="board">
                     {this.state.notes.map(this.eachNote)}
                     <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
-                            onClick={this.add.bind(null, "New Note")}/>
+                            onClick={this.add.bind(null, "node")}/>
             </div>
 
         );

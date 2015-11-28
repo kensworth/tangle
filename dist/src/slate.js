@@ -49,7 +49,7 @@ var Board = React.createClass({displayName: "Board",
         return (React.createElement("div", {className: "board"}, 
                     this.state.notes.map(this.eachNote), 
                     React.createElement("button", {className: "btn btn-sm btn-success glyphicon glyphicon-plus", 
-                            onClick: this.add.bind(null, "New Note")})
+                            onClick: this.add.bind(null, "node")})
             )
 
         );
