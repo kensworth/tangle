@@ -24,7 +24,7 @@ gulp.task('copy', function(){
   gulp.src(path.HTML)
     .pipe(gulp.dest(path.DEST));
   gulp.src(path.CSS)
-      .pipe(gulp.dest(path.DEST_CSS));
+    .pipe(gulp.dest(path.DEST_CSS));
 });
 
 gulp.task('watch', function() {
@@ -74,3 +74,9 @@ gulp.task('replaceHTML', function(){
 gulp.task('production', ['replaceHTML', 'build']);
 
 gulp.task('default', ['watch']);
+
+
+
+
+
+
