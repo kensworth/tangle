@@ -47,9 +47,6 @@ var Slate = React.createClass({
                 >{node.node}</Node>
             );
     },
-    onProliferate: function() {
-        this.add.bind(null, "node");
-    },
     render: function() {
         return (<div className="slate">
                     {this.state.nodes.map(this.eachNode)}

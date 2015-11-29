@@ -31,8 +31,8 @@ var Node = React.createClass({
     proliferate: function() {
         console.log("event");
         this.setState({ proliferated: !this.state.proliferated});
-        //this.props.callback(this.state.proliferated);
         console.log(this.state.proliferated);
+        console.log(this.style);
     },
     renderDisplay: function() {
         return (
