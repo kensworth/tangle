@@ -16,7 +16,7 @@ var path = {
   DEST: 'dist',
   DEST_CSS: 'dist/css',
   DEST_BUILD: 'dist/build',
-  DEST_SRC: 'dist/src',
+  DEST_SRC: 'dist/js',
   ENTRY_POINT: './src/js/main.js',
 };
 
@@ -27,24 +27,24 @@ gulp.task('copy', function(){
     .pipe(gulp.dest(path.DEST_CSS));
 });
 
-gulp.task('replaceHTML', function(){
+/*gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
     .pipe(htmlreplace({
       js: 'build/' + path.MINIFIED_OUT
     }))
     .pipe(gulp.dest(path.DEST));
-});
+});*/
 
-gulp.task('build', function(){
+/*gulp.task('build', function(){
   browserify({
     entries: [path.ENTRY_POINT],
     transform: [reactify],
   })
     .bundle()
     .pipe(source(path.MINIFIED_OUT))
-    .pipe(streamify(uglify(/*path.MINIFIED_OUT*/)))
+    .pipe(streamify(uglify(/*path.MINIFIED_OUT*//*)))
     .pipe(gulp.dest(path.DEST_BUILD));
-});
+});*/
 
 gulp.task('watch', function() {
   gulp.watch(path.HTMLCSS, ['copy']);
@@ -65,17 +65,16 @@ gulp.task('watch', function() {
       .pipe(source(path.OUT))
       .pipe(gulp.dest(path.DEST_SRC))
       console.log('Updated.', (Date.now() - updateStart) + ' ms');  })
-    /*.bundle().on('error', function(err) {
+    .bundle().on('error', function(err) {
       console.log(err.message)
       this.end();
-    })*/
+    })
     .bundle()
     .pipe(source(path.OUT))
     .pipe(gulp.dest(path.DEST_SRC));
 });
 
-gulp.task('production', ['replaceHTML', 'build']);
-
+//gulp.task('production', ['replaceHTML', 'build']);
 gulp.task('default', ['watch']);
 
 

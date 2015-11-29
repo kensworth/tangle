@@ -1,4 +1,4 @@
-var Note = React.createClass({
+var Note = React.createClass({displayName: "Note",
     getInitialState: function() {
         return {editing: false}
     },
@@ -27,25 +27,25 @@ var Note = React.createClass({
     },
     renderDisplay: function() {
         return (
-            <div className="note"
-                style={this.style}>
-                <p>{this.props.children}</p>
-                <span>
-                    <button onClick={this.edit}
-                            className="btn btn-primary glyphicon glyphicon-pencil"/>
-                    <button onClick={this.remove}
-                            className="btn btn-danger glyphicon glyphicon-trash"/>
-                </span>
-            </div>
+            React.createElement("div", {className: "note", 
+                style: this.style}, 
+                React.createElement("p", null, this.props.children), 
+                React.createElement("span", null, 
+                    React.createElement("button", {onClick: this.edit, 
+                            className: "btn btn-primary glyphicon glyphicon-pencil"}), 
+                    React.createElement("button", {onClick: this.remove, 
+                            className: "btn btn-danger glyphicon glyphicon-trash"})
+                )
+            )
             );
     },
     renderForm: function() {
         return (
-            <div className="note" style={this.style}>
-            <textarea ref="newText" defaultValue={this.props.children} 
-            className="form-control"></textarea>
-            <button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
-            </div>
+            React.createElement("div", {className: "note", style: this.style}, 
+            React.createElement("textarea", {ref: "newText", defaultValue: this.props.children, 
+            className: "form-control"}), 
+            React.createElement("button", {onClick: this.save, className: "btn btn-success btn-sm glyphicon glyphicon-floppy-disk"})
+            )
             )
     },
     render: function() {
@@ -57,8 +57,6 @@ var Note = React.createClass({
         }
     }
 });
-
-module.exports = Note;
 
 
 

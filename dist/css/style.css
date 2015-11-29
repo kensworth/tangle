@@ -1,6 +1,6 @@
 body,
 html,
-div.slate,
+div.board,
 div#react-container {
     height: 100%;
     overflow: hidden;
@@ -9,10 +9,9 @@ div#react-container {
 body {
     margin: 0;
     padding: 0;
-    font-family:Arvo;
 }
 
-div.slate {
+div.board {
     background-color: white;
     width: 100%;
     /*background: #eab92d;
@@ -26,7 +25,7 @@ div.slate {
 
 }
 
-div.node {
+div.note {
     height: 200px;
     width: 200px;
     border-radius: 50%;
@@ -41,21 +40,21 @@ div.node {
     box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
 }
 
-div.node:active {
+div.note:active {
     cursor: -webkit-grabbing;
 }
 
-div.node p {
+div.note p {
     font-size: 22px;
     padding: 5px;
     font-family: "Arvo", Arial;
 }
 
-div.node:hover > span {
+div.note:hover > span {
     opacity: 1;
 }
 
-div.node > span {
+div.note > span {
     position: absolute;
     bottom: 2px;
     right: 2px;
@@ -63,11 +62,11 @@ div.node > span {
     transition: opacity .25s linear;
 }
 
-div.node button {
+div.note button {
     margin: 2px;
 }
 
-div.node > textarea {
+div.note > textarea {
     height: 75%;
     background: rgba(255, 255, 255, .5);
 }

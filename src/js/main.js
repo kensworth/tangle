@@ -1,4 +1,4 @@
-var Slate = require('./slate');
+var Board = require('./slate');
 
-React.render(<slate count={10}/>,
-    document.getElementById('app'));
+React.render(<Board count={10}/>, 
+    document.getElementById('react-container'));
