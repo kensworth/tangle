@@ -1,6 +1,9 @@
 var Node = React.createClass({
     getInitialState: function() {
-        return {editing: false}
+        return {
+            editing: false,
+            proliferated: false,
+        }
     },
     componentWillMount: function() {
         this.style = {
@@ -25,6 +28,12 @@ var Node = React.createClass({
     remove: function() {
         this.props.onRemove(this.props.index);
     },
+    proliferate: function() {
+        console.log("event");
+        this.setState({ proliferated: !this.state.proliferated});
+        //this.props.callback(this.state.proliferated);
+        console.log(this.state.proliferated);
+    },
     renderDisplay: function() {
         return (
             <div className="node"
@@ -35,6 +44,8 @@ var Node = React.createClass({
                             className="btn btn-primary glyphicon glyphicon-pencil"/>
                     <button onClick={this.remove}
                             className="btn btn-danger glyphicon glyphicon-trash"/>
+                    <button onClick={this.proliferate}
+                            className="btn btn-success glyphicon glyphicon-zoom-in"/>        
                 </span>
             </div>
             );

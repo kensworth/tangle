@@ -59,11 +59,12 @@ gulp.task('watch', function() {
   }));
 
   return watcher.on('update', function () {
+    var date = new Date();
     var updateStart = Date.now();
     watcher.bundle()
       .pipe(source(path.OUT))
       .pipe(gulp.dest(path.DEST_SRC))
-      console.log('Updated.', (Date.now() - updateStart) + ' ms');  })
+      console.log('[' + date.toLocaleTimeString() + '] Updated src after', (Date.now() - updateStart) + ' ms');  })
     /*.bundle().on('error', function(err) {
       console.log(err.message)
       this.end();

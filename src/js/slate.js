@@ -38,7 +38,7 @@ var Slate = React.createClass({
         arr.splice(i, 1);
         this.setState({nodes: arr});
     },
-    eachnode: function(node, i) {
+    eachNode: function(node, i) {
         return (
                 <Node key={node.id}
                     index={i}
@@ -47,9 +47,12 @@ var Slate = React.createClass({
                 >{node.node}</Node>
             );
     },
+    onProliferate: function() {
+        this.add.bind(null, "node");
+    },
     render: function() {
         return (<div className="slate">
-                    {this.state.nodes.map(this.eachnode)}
+                    {this.state.nodes.map(this.eachNode)}
                     <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
                             onClick={this.add.bind(null, "node")}/>
             </div>
