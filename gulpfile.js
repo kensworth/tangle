@@ -30,7 +30,7 @@ gulp.task('copy', function(){
 gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
     .pipe(htmlreplace({
-      'js': 'build/' + path.MINIFIED_OUT
+      js: 'build/' + path.MINIFIED_OUT
     }))
     .pipe(gulp.dest(path.DEST));
 });
