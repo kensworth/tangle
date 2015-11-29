@@ -1,19 +1,19 @@
-var Note = require('./node');
+var Node = require('./node');
 
-var Board = React.createClass({
+var Slate = React.createClass({
     propTypes: {
         count: function(props, propName) {
             if (typeof props[propName] !== "number"){
                 return new Error('The count property must be a number');
             }
             if (props[propName] > 100) {
-                return new Error("Creating " + props[propName] + " notes is ridiculous");
+                return new Error("Creating " + props[propName] + " nodes is ridiculous");
             }
         }
     },
     getInitialState: function() {
         return {
-            notes: []
+            nodes: []
         };
     },
     nextId: function() {
@@ -21,41 +21,41 @@ var Board = React.createClass({
         return this.uniqueId++;
     },
     add: function(text) {
-        var arr = this.state.notes;
+        var arr = this.state.nodes;
         arr.push({
             id: this.nextId(),
-            note: text
+            node: text
         });
-        this.setState({notes: arr});
+        this.setState({nodes: arr});
     },
     update: function(newText, i) {
-        var arr = this.state.notes;
-        arr[i].note = newText;
-        this.setState({notes:arr});
+        var arr = this.state.nodes;
+        arr[i].node = newText;
+        this.setState({nodes:arr});
     },
     remove: function(i) {
-        var arr = this.state.notes;
+        var arr = this.state.nodes;
         arr.splice(i, 1);
-        this.setState({notes: arr});
+        this.setState({nodes: arr});
     },
-    eachNote: function(note, i) {
+    eachnode: function(node, i) {
         return (
-                <Note key={note.id}
+                <Node key={node.id}
                     index={i}
                     onChange={this.update}
                     onRemove={this.remove}
-                >{note.note}</Note>
+                >{node.node}</Node>
             );
     },
     render: function() {
-        return (<div className="board">
-                    {this.state.notes.map(this.eachNote)}
+        return (<div className="slate">
+                    {this.state.nodes.map(this.eachnode)}
                     <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
-                            onClick={this.add.bind(null, "New Note")}/>
+                            onClick={this.add.bind(null, "node")}/>
             </div>
 
         );
     }
 });
 
-module.exports = Board;
+module.exports = Slate;

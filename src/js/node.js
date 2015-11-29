@@ -1,4 +1,4 @@
-var Note = React.createClass({
+var Node = React.createClass({
     getInitialState: function() {
         return {editing: false}
     },
@@ -6,7 +6,7 @@ var Note = React.createClass({
         this.style = {
             right: this.randomBetween(0, window.innerWidth - 150) + 'px',
             top: this.randomBetween(0, window.innerHeight - 150) + 'px',
-            transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)'
+            //transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)'
         };
     },
     componentDidMount: function(){
@@ -27,7 +27,7 @@ var Note = React.createClass({
     },
     renderDisplay: function() {
         return (
-            <div className="note"
+            <div className="node"
                 style={this.style}>
                 <p>{this.props.children}</p>
                 <span>
@@ -41,7 +41,7 @@ var Note = React.createClass({
     },
     renderForm: function() {
         return (
-            <div className="note" style={this.style}>
+            <div className="node" style={this.style}>
             <textarea ref="newText" defaultValue={this.props.children} 
             className="form-control"></textarea>
             <button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
@@ -58,7 +58,7 @@ var Note = React.createClass({
     }
 });
 
-module.exports = Note;
+module.exports = Node;
 
 
 

@@ -60,15 +60,14 @@ gulp.task('watch', function() {
 
   return watcher.on('update', function () {
     var updateStart = Date.now();
-    console.log('Updating!');
     watcher.bundle()
       .pipe(source(path.OUT))
       .pipe(gulp.dest(path.DEST_SRC))
       console.log('Updated.', (Date.now() - updateStart) + ' ms');  })
-    .bundle().on('error', function(err) {
+    /*.bundle().on('error', function(err) {
       console.log(err.message)
       this.end();
-    })
+    })*/
     .bundle()
     .pipe(source(path.OUT))
     .pipe(gulp.dest(path.DEST_SRC));
