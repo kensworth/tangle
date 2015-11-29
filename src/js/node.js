@@ -27,7 +27,7 @@ var node = React.createClass({
     },
     renderDisplay: function() {
         return (
-            <div className="note"
+            <div className="node"
                 style={this.style}>
                 <p>{this.props.children}</p>
                 <span>
@@ -41,7 +41,7 @@ var node = React.createClass({
     },
     renderForm: function() {
         return (
-            <div className="note" style={this.style}>
+            <div className="node" style={this.style}>
             <textarea ref="newText" defaultValue={this.props.children} 
             className="form-control"></textarea>
             <button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
@@ -58,7 +58,7 @@ var node = React.createClass({
     }
 });
 
-module.exports = node;
+ module.exports = node;
 
 
 

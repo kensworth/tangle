@@ -27,29 +27,12 @@ gulp.task('copy', function(){
     .pipe(gulp.dest(path.DEST_CSS));
 });
 
-gulp.task('watch', function() {
-  gulp.watch(path.HTMLCSS, ['copy']);
-
-  var watcher  = watchify(browserify({
-    entries: [path.ENTRY_POINT],
-    transform: [reactify],
-    debug: true,
-    cache: {}, packageCache: {}, fullPaths: true
-  }));
-
-  return watcher.on('update', function () {
-    watcher.bundle()
-      .pipe(source(path.OUT))
-      .pipe(gulp.dest(path.DEST_SRC))
-      console.log('Updated');
-  })
-    /*.bundle().on('error', function(err) {
-      console.log(err.message)
-      this.end();
-    })*/
-    .bundle()
-    .pipe(source(path.OUT))
-    .pipe(gulp.dest(path.DEST_SRC));
+gulp.task('replaceHTML', function(){
+  gulp.src(path.HTML)
+    .pipe(htmlreplace({
+      'js': 'build/' + path.MINIFIED_OUT
+    }))
+    .pipe(gulp.dest(path.DEST));
 });
 
 gulp.task('build', function(){
@@ -63,12 +46,32 @@ gulp.task('build', function(){
     .pipe(gulp.dest(path.DEST_BUILD));
 });
 
-gulp.task('replaceHTML', function(){
-  gulp.src(path.HTML)
-    .pipe(htmlreplace({
-      'js': 'build/' + path.MINIFIED_OUT
-    }))
-    .pipe(gulp.dest(path.DEST));
+gulp.task('watch', function() {
+  gulp.watch(path.HTMLCSS, ['copy']);
+  //gulp.watch(path.HTML, ['replaceHTML']);
+  //appends everything after script tag as well as changes src, revise later
+
+  var watcher  = watchify(browserify({
+    entries: [path.ENTRY_POINT],
+    transform: [reactify],
+    debug: true,
+    cache: {}, packageCache: {}, fullPaths: true
+  }));
+
+  return watcher.on('update', function () {
+    var updateStart = Date.now();
+    console.log('Updating!');
+    watcher.bundle()
+      .pipe(source(path.OUT))
+      .pipe(gulp.dest(path.DEST_SRC))
+      console.log('Updated.', (Date.now() - updateStart) + ' ms');  })
+    /*.bundle().on('error', function(err) {
+      console.log(err.message)
+      this.end();
+    })*/
+    .bundle()
+    .pipe(source(path.OUT))
+    .pipe(gulp.dest(path.DEST_SRC));
 });
 
 gulp.task('production', ['replaceHTML', 'build']);
