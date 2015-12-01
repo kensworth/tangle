@@ -14,6 +14,7 @@ var Slate = React.createClass({
     getInitialState: function() {
         return {
             nodes: []
+            //put in store
         };
     },
     nextId: function() {
