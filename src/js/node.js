@@ -14,7 +14,7 @@ var Node = React.createClass({
             top: this.props.style.top + 'px',
             //dont worry about setState style because nodes won't move
         };
-        //if(this.)
+        //this.state.parent: FIGURE THIS PART OUT WHEN YOU GET BACK
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
@@ -35,7 +35,7 @@ var Node = React.createClass({
         if(!this.state.proliferated) {
             //methods
             //pass parent, if null, then generic center screen add
-            this.props.onProliferate(this.props.node, this.state.parent);
+            this.props.onProliferate(this.props.node, this.state.parent, 5); //test number before hooking into backend
             this.setState({ proliferated: !this.state.proliferated});
             //endmethods
         }
