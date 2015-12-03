@@ -37,6 +37,7 @@ var Slate = React.createClass({
     },
     proliferate: function(index, style) {
         var responses = 2; //testing
+        //node math needed
         for(i = 0; i < responses; i++) {
             console.log("requested");
             this.add("node" + i);
@@ -60,6 +61,7 @@ var Slate = React.createClass({
                     onRemove={this.remove}
                     onProliferate={this.proliferate}
                     style={this.state.nodes[i].style}
+                    node={this.state.nodes[i]}
                 >{node.node}</Node>
             );
     },

@@ -26,8 +26,8 @@ div.slate {
 }
 
 div.node {
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
     background-color: gray;
     margin: 2px 0;
@@ -64,7 +64,7 @@ div.node > span {
 
 div.node button {
     margin: 2px;
-    right: 30px;
+    right: 7px;
     top:-30px;
 }
 

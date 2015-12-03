@@ -3,7 +3,6 @@ var Node = React.createClass({
         return {
             editing: false,
             proliferated: false,
-            parent: null,
         }
     },
     componentWillMount: function() {
@@ -11,12 +10,15 @@ var Node = React.createClass({
             //right: this.randomBetween(0, window.innerWidth - 150) + 'px',
             //top: this.randomBetween(0, window.innerHeight - 150) + 'px',
             //transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)'
-            right: this.props.style.right + 'px',
-            top: this.props.style.top + 'px',
+            //right: this.props.style.right + 'px',
+            //top: this.props.style.top + 'px',
+            right: window.innerWidth / 2 + 'px',
+            top: window.innerHeight / 2 + 'px',
         };
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
+
     },
     randomBetween: function(min, max) {
         return (min + Math.ceil(Math.random() * max));
@@ -33,10 +35,14 @@ var Node = React.createClass({
     },
     proliferate: function() {
         if(!this.state.proliferated) {
-            console.log(this.props.index);
-            console.log(this.props.style);
+            console.log("index " + this.props.index);
+            console.log("parent " + this.props.node.style.right);
+            console.log("component style: " + this.style.right + " " + this.style.top);
+
+            //methods
             this.props.onProliferate(this.props.index, this.style);
             this.setState({ proliferated: !this.state.proliferated});
+            //endmethods
         }
         else {
             console.log("already proliferated");
