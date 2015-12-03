@@ -22,7 +22,9 @@ var Slate = React.createClass({
         return this.uniqueId++;
     },
     add: function(text) {
+        //method takes in nodes? or parent? someway to differentiate between first add and subsequent proliferates
         var arr = this.state.nodes;
+        //if parent == null
         arr.push({
             id: this.nextId(),
             node: text,
