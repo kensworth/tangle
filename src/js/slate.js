@@ -45,6 +45,7 @@ var Slate = React.createClass({
                     index={i}
                     onChange={this.update}
                     onRemove={this.remove}
+                    onProliferate={this.add.bind(null,"node")}
                 >{node.node}</Node>
             );
     },

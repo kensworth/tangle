@@ -29,10 +29,13 @@ var Node = React.createClass({
         this.props.onRemove(this.props.index);
     },
     proliferate: function() {
-        console.log("event");
-        this.setState({ proliferated: !this.state.proliferated});
-        console.log(this.state.proliferated);
-        console.log(this.style);
+        if(!this.state.proliferated) {
+            this.props.onProliferate();
+            this.setState({ proliferated: !this.state.proliferated});
+        }
+        else {
+            console.log("already proliferated");
+        }
     },
     renderDisplay: function() {
         return (
