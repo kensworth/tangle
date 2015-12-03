@@ -8,9 +8,11 @@ var Node = React.createClass({
     },
     componentWillMount: function() {
         this.style = {
-            right: this.randomBetween(0, window.innerWidth - 150) + 'px',
-            top: this.randomBetween(0, window.innerHeight - 150) + 'px',
+            //right: this.randomBetween(0, window.innerWidth - 150) + 'px',
+            //top: this.randomBetween(0, window.innerHeight - 150) + 'px',
             //transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)'
+            right: this.props.style.right + 'px',
+            top: this.props.style.top + 'px',
         };
     },
     componentDidMount: function(){
@@ -32,6 +34,7 @@ var Node = React.createClass({
     proliferate: function() {
         if(!this.state.proliferated) {
             console.log(this.props.index);
+            console.log(this.props.style);
             this.props.onProliferate(this.props.index, this.style);
             this.setState({ proliferated: !this.state.proliferated});
         }

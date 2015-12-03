@@ -25,7 +25,11 @@ var Slate = React.createClass({
         var arr = this.state.nodes;
         arr.push({
             id: this.nextId(),
-            node: text
+            node: text,
+            style: {
+                right: 500,
+                top: 500,
+            },
         });
         this.setState({nodes: arr});
     },
@@ -53,6 +57,7 @@ var Slate = React.createClass({
                     onChange={this.update}
                     onRemove={this.remove}
                     onProliferate={this.proliferate}
+                    style={this.state.nodes[i].style}
                 >{node.node}</Node>
             );
     },
