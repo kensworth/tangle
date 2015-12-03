@@ -3,26 +3,24 @@ var Node = React.createClass({
         return {
             editing: false,
             proliferated: false,
+            parent: null,
         }
     },
     componentWillMount: function() {
         this.style = {
-            //right: this.randomBetween(0, window.innerWidth - 150) + 'px',
-            //top: this.randomBetween(0, window.innerHeight - 150) + 'px',
-            //transform: 'rotate(' + this.randomBetween(-15, 15) + 'deg)'
             //right: this.props.style.right + 'px',
             //top: this.props.style.top + 'px',
-            right: window.innerWidth / 2 + 'px',
-            top: window.innerHeight / 2 + 'px',
+            right: this.props.style.right + 'px',
+            top: this.props.style.top + 'px',
+            //dont worry about setState style because nodes won't move
         };
+        //if(this.)
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
 
     },
-    randomBetween: function(min, max) {
-        return (min + Math.ceil(Math.random() * max));
-    },
+
     edit: function() {
         this.setState({editing: true});
     },
@@ -36,11 +34,12 @@ var Node = React.createClass({
     proliferate: function() {
         if(!this.state.proliferated) {
             console.log("index " + this.props.index);
-            console.log("parent " + this.props.node.style.right);
+            console.log("parent: ");
             console.log("component style: " + this.style.right + " " + this.style.top);
 
             //methods
-            this.props.onProliferate(this.props.index, this.style);
+            //pass parent, if null, then generic center screen add
+            this.props.onProliferate(this.style, this.props.node);
             this.setState({ proliferated: !this.state.proliferated});
             //endmethods
         }
