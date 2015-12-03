@@ -33,18 +33,14 @@ var Node = React.createClass({
     },
     proliferate: function() {
         if(!this.state.proliferated) {
-            console.log("index " + this.props.index);
-            console.log("parent: ");
-            console.log("component style: " + this.style.right + " " + this.style.top);
-
             //methods
             //pass parent, if null, then generic center screen add
-            this.props.onProliferate(this.style, this.props.node);
+            this.props.onProliferate(this.props.node, this.state.parent);
             this.setState({ proliferated: !this.state.proliferated});
             //endmethods
         }
         else {
-            console.log("already proliferated");
+            console.log('already proliferated');
         }
     },
     renderDisplay: function() {
