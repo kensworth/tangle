@@ -3,6 +3,7 @@ var Node = React.createClass({
         return {
             editing: false,
             proliferated: false,
+            parent: null,
         }
     },
     componentWillMount: function() {
@@ -30,7 +31,8 @@ var Node = React.createClass({
     },
     proliferate: function() {
         if(!this.state.proliferated) {
-            this.props.onProliferate();
+            console.log(this.props.index);
+            this.props.onProliferate(this.props.index, this.style);
             this.setState({ proliferated: !this.state.proliferated});
         }
         else {

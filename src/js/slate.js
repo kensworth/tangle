@@ -29,6 +29,13 @@ var Slate = React.createClass({
         });
         this.setState({nodes: arr});
     },
+    proliferate: function(index, style) {
+        var responses = 2; //testing
+        for(i = 0; i < responses; i++) {
+            console.log("requested");
+            this.add("node" + i);
+        }
+    },
     update: function(newText, i) {
         var arr = this.state.nodes;
         arr[i].node = newText;
@@ -45,12 +52,7 @@ var Slate = React.createClass({
                     index={i}
                     onChange={this.update}
                     onRemove={this.remove}
-                    onProliferate={
-                        for(i = 0; i < 5; i++) {
-                            console.log("hi");
-                            this.add.bind(null,"node" + i);
-                        }
-                    }
+                    onProliferate={this.proliferate}
                 >{node.node}</Node>
             );
     },
