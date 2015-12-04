@@ -40,8 +40,8 @@ var Slate = React.createClass({
                     id: this.nextId(),
                     text: text,
                     style: {
-                        right: 100 * i,
-                        top: 100 * i,
+                        right: 100 * i,//replace with function of sinx
+                        top: 100 * i,//replace with function of sinx
                     },
                 });
             }
