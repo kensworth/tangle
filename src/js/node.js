@@ -18,7 +18,6 @@ var Node = React.createClass({
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
-
     },
 
     edit: function() {
