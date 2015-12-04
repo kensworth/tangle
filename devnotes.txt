@@ -1,1 +1,0 @@
-currently trying to figure out how node can communicate with slate to proliferate more nodes
