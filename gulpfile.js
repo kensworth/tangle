@@ -6,6 +6,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');
 var streamify = require('gulp-streamify');
+var gutil = require('gulp-util');
 
 var path = {
   HTML: 'src/index.html',
@@ -61,21 +62,33 @@ gulp.task('watch', function() {
   return watcher.on('update', function () {
     var date = new Date();
     var updateStart = Date.now();
-    watcher.bundle()
-      .pipe(source(path.OUT))
-      .pipe(gulp.dest(path.DEST_SRC))
-      console.log('[' + date.toLocaleTimeString() + '] Updated src after', (Date.now() - updateStart) + ' ms');  })
-    /*.bundle().on('error', function(err) {
-      console.log(err.message)
-      this.end();
-    })*/
-    .bundle()
+    watcher.bundle().on('error', function (err) {
+        console.log(err.toString());
+        this.emit("end");
+    })
     .pipe(source(path.OUT))
     .pipe(gulp.dest(path.DEST_SRC));
+    gutil.log('Updated src after', gutil.colors.magenta((Date.now() - updateStart) + ' ms'));
+  })
+  .bundle()
+  .pipe(source(path.OUT))
+  .pipe(gulp.dest(path.DEST_SRC));
 });
 
 //gulp.task('production', ['replaceHTML', 'build']);
 gulp.task('default', ['watch']);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
