@@ -16,6 +16,9 @@ var Slate = React.createClass({
             nodes: []
         };
     },
+    componentDidMount: function(){
+        $(this.getDOMNode()).draggable();
+    },
     nextId: function() {
         this.uniqueId = this.uniqueId || 0;
         return this.uniqueId++;
