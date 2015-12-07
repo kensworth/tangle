@@ -24,6 +24,7 @@ var Slate = React.createClass({
         var arr = this.state.nodes;
         if(node == null && parent == null) {
             console.log('node and parent null');
+            console.log('-------------------------------');
             arr.push({
                 id: this.nextId(),
                 text: text,
@@ -35,6 +36,7 @@ var Slate = React.createClass({
         } 
         else if(parent == null) {
             console.log('node not null, parent null');
+            console.log('-------------------------------');
             for(i = 0; i < number; i++) {
                 arr.push({
                     id: this.nextId(),
@@ -48,12 +50,12 @@ var Slate = React.createClass({
         }
         else {
             console.log('both not null');
+            console.log('-------------------------------');
         }
         this.setState({nodes: arr});
     },
     proliferate: function(node, parent, number) {
         //proliferate needs to take in a number parameter later when hooking to the backend
-        var responses = 2; //testing
         //node math needed
         console.log('node:');
         console.dir(node);
@@ -80,6 +82,7 @@ var Slate = React.createClass({
                     onProliferate={this.proliferate}
                     style={this.state.nodes[i].style}
                     node={this.state.nodes[i]}
+                    //parent={this.state.nodes[0]}
                 >{node.text}</Node>
             );
     },

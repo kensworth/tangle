@@ -14,12 +14,11 @@ var Node = React.createClass({
             top: this.props.style.top + 'px',
             //dont worry about setState style because nodes won't move
         };
-        //this.state.parent: FIGURE THIS PART OUT WHEN YOU GET BACK
+        this.setState({parent: this.props.parent});
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
     },
-
     edit: function() {
         this.setState({editing: true});
     },
