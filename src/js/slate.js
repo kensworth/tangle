@@ -45,12 +45,24 @@ var Slate = React.createClass({
                         right: window.innerWidth / 2 + 250 * Math.sin((i / number) * 2 * Math.PI),
                         top: window.innerHeight / 2 + 250 * Math.cos((i / number) * 2 * Math.PI),
                     },
+                    parent: node
                 });
             }
         }
         else {
             console.log('both not null');
             console.log('-------------------------------');
+            for(i = 0; i < number; i++) {
+                arr.push({
+                    id: this.nextId(),
+                    text: text,
+                    style: {
+                        right: 0,
+                        top: 0,
+                    },
+                    parent: node
+                });
+            }
         }
         this.setState({nodes: arr});
     },
@@ -82,7 +94,7 @@ var Slate = React.createClass({
                     onProliferate={this.proliferate}
                     style={this.state.nodes[i].style}
                     node={this.state.nodes[i]}
-                    //parent={this.state.nodes[0]}
+                    parent={this.state.nodes[i].parent}
                 >{node.text}</Node>
             );
     },
