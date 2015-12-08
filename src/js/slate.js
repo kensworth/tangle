@@ -70,13 +70,6 @@ var Slate = React.createClass({
             var angle = this.findAngle(parent, node, reference);
             console.log(angle * 57.29);
 
-            console.log(node.style);
-            node.style = {
-                right: node.style.right + 100,
-                top: node.style.top + 100,
-            }
-            console.log(node.style);
-
             /*for(i = 0; i < number; i++) {
                 arr.push({
                     id: this.nextId(),
