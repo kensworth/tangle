@@ -61,8 +61,8 @@ var Slate = React.createClass({
             }
         }
         else {
-            var right = node.style.right;
-            var top = node.style.top;
+            var right = location.right;
+            var top = location.top;
             console.log(right + ' ' + top);
 
             for(i = 0; i < number; i++) {

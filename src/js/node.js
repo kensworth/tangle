@@ -36,6 +36,9 @@ var Node = React.createClass({
     },
     proliferate: function() {
         if(!this.state.proliferated) {
+            var right = null;
+            var top = null;
+
             if(this.state.parent != null) {
                 //displace 300 px away from the node in the angle formed by the node and its parent
                 this.setState({
@@ -51,10 +54,13 @@ var Node = React.createClass({
                         top: this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
                     },
                 });
+                //fired to proliferate before rerender
+                right = this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x;
+                top = this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y;
             }
             //pre-backend hardcode
             //this.props.node is not the current node
-            this.props.onProliferate(this.state.style, this.props.node, this.state.parent, 3);
+            this.props.onProliferate({right: right, top: top}, this.props.node, this.state.parent, 3);
             this.setState({ proliferated: !this.state.proliferated});
         }
         else {
