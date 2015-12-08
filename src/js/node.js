@@ -4,18 +4,28 @@ var Node = React.createClass({
             editing: false,
             proliferated: false,
             parent: null,
-            style: {
+            /*style: {
                 right: this.props.style.right + 'px',
                 top: this.props.style.top + 'px',
-            },
+            },*/
         }
     },
     componentWillMount: function() {
-        /*this.style = {
+        this.style = {
             right: this.props.style.right + 'px',
             top: this.props.style.top + 'px',
-        };*/
+        };
         this.setState({parent: this.props.parent});
+        console.log(this.style);
+
+        this.imageStyle={
+            //testing hard-coded background
+            right: this.props.style.right + 'px',
+            top: this.props.style.top + 'px',
+            backgroundImage: 'url(' + this.props.image + ')',
+            backgroundSize: 'cover',
+            opacity: '0.3',
+        }
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
@@ -34,6 +44,7 @@ var Node = React.createClass({
         if(!this.state.proliferated) {
             this.props.onProliferate(this.props.node, this.state.parent, 3); //test number before hooking into backend
             this.setState({ proliferated: !this.state.proliferated});
+            //this.setState({ style: {}})
         }
         else {
             console.log('already proliferated');
@@ -41,26 +52,29 @@ var Node = React.createClass({
     },
     renderDisplay: function() {
         return (
-            <div className="node"
-                style={this.style}>
-                <p>{this.props.children}</p>
-                <span>
-                    <button onClick={this.edit}
-                            className="btn btn-primary glyphicon glyphicon-pencil"/>
-                    <button onClick={this.remove}
-                            className="btn btn-danger glyphicon glyphicon-trash"/>
-                    <button onClick={this.proliferate}
-                            className="btn btn-success glyphicon glyphicon-zoom-in"/>        
-                </span>
+            <div>
+                <div className="node" style={this.imageStyle}></div>
+                <div className="node"
+                    style={this.style}>
+                    <p>{this.props.children}</p>
+                    <span>
+                        <button onClick={this.edit}
+                                className="btn btn-primary glyphicon glyphicon-pencil"/>
+                        <button onClick={this.remove}
+                                className="btn btn-danger glyphicon glyphicon-trash"/>
+                        <button onClick={this.proliferate}
+                                className="btn btn-success glyphicon glyphicon-zoom-in"/>        
+                    </span>
+                </div>
             </div>
             );
     },
     renderForm: function() {
         return (
-            <div className="node" style={this.state.style}>
-            <textarea ref="newText" defaultValue={this.props.children} 
-            className="form-control"></textarea>
-            <button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
+            <div className="node" style={this.style}>
+                <textarea ref="newText" defaultValue={this.props.children} 
+                className="form-control"></textarea>
+                <button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
             </div>
             )
     },
@@ -75,16 +89,3 @@ var Node = React.createClass({
 });
 
 module.exports = Node;
-
-
-
-
-
-
-
-
-
-
-
-
-

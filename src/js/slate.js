@@ -13,7 +13,10 @@ var Slate = React.createClass({
     },
     getInitialState: function() {
         return {
-            nodes: []
+            nodes: [],
+            images: [
+
+            ]
         };
     },
     componentDidMount: function(){
@@ -126,6 +129,7 @@ var Slate = React.createClass({
                     style={this.state.nodes[i].style}
                     node={this.state.nodes[i]}
                     parent={this.state.nodes[i].parent}
+                    image={this.state.images[i]}
                 >{node.text}</Node>
             );
     },
