@@ -15,10 +15,10 @@ body {
 
 div.slate {
     background-color: gray;
-    height: 500%;
-    width: 500%;
-    top: -200%;
-    left: -200%;
+    height: 1000px;
+    width: 1000px;
+    top: -10%;
+    left: -10%;
 }
 
 div.node {

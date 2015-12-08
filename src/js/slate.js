@@ -18,8 +18,7 @@ var Slate = React.createClass({
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
-        console.log(document.getElementsByClassName("slate").style.width);
-        console.log(document.getElementsByClassName("slate").style.height);
+        console.log($("#slate").css("height"));
     },
     nextId: function() {
         this.uniqueId = this.uniqueId || 0;
@@ -35,8 +34,8 @@ var Slate = React.createClass({
                 text: text,
                 style: {
                     //document.getElementsByClassName("mystyle").style.height
-                    right: document.getElementsByClassName("slate").style.width / 2,
-                    top: document.getElementsByClassName("slate").style.height / 2,
+                    right: document.getElementById("slate").style.width / 2,
+                    top: document.getElementById("slate").style.height / 2,
                     //right: window.innerWidth / 2,
                     //top: window.innerHeight / 2,
                     //right: window.outerWidth / 2,
@@ -98,10 +97,10 @@ var Slate = React.createClass({
         b = Math.pow(p1.style.right-p2.style.right,2) + Math.pow(p1.style.top-p2.style.top,2),
         c = Math.pow(p2.style.right-p0.style.right,2) + Math.pow(p2.style.top-p0.style.top,2);
         if(p1.style.right < p0.style.right) {
-            return 2 * Math.PI - Math.acos((a+b-c) / Math.sqrt(4*a*b));
+            return 2 * Math.PI - Math.acos((a+b-c) / Math.sqrt(4 * a * b));
         }
         else {
-            return Math.acos((a+b-c) / Math.sqrt(4*a*b));
+            return Math.acos((a + b - c) / Math.sqrt(4 * a * b));
         }
     },
     update: function(newText, i) {
@@ -128,7 +127,7 @@ var Slate = React.createClass({
             );
     },
     render: function() {
-        return (<div className="slate">
+        return (<div className="slate" id="slate">
                     {this.state.nodes.map(this.eachNode)}
                     <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
                             onClick={this.add.bind(null, "node", null, null, 1)}/>
