@@ -32,8 +32,15 @@ var Slate = React.createClass({
                 id: this.nextId(),
                 text: text,
                 style: {
-                    right: window.innerWidth / 2,
-                    top: window.innerHeight / 2,
+                    //slate width / 2?
+                    //document.getElementsByClassName("mystyle")
+                    //.style.height
+                    
+                    
+                    //right: window.innerWidth / 2,
+                    //top: window.innerHeight / 2,
+                    //right: window.outerWidth / 2,
+                    //top: window.outerHeight / 2,
                 },
             });
         } 

@@ -2,8 +2,8 @@ body,
 html,
 div.slate,
 div#app {
-    height: 120%;
-    width:120%;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     /*overflow: scroll;*/
 }
@@ -15,6 +15,10 @@ body {
 
 div.slate {
     background-color: gray;
+    height: 500%;
+    width: 500%;
+    top: -200%;
+    left: -200%;
     /*width: 120%;*/
     /*background: #eab92d;
     background: -moz-radial-gradient(center, ellipse cover, #eab92d 57%, #c79810 99%);
