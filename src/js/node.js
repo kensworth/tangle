@@ -4,13 +4,17 @@ var Node = React.createClass({
             editing: false,
             proliferated: false,
             parent: null,
+            style: {
+                right: this.props.style.right + 'px',
+                top: this.props.style.top + 'px',
+            },
         }
     },
     componentWillMount: function() {
-        this.style = {
+        /*this.style = {
             right: this.props.style.right + 'px',
             top: this.props.style.top + 'px',
-        };
+        };*/
         this.setState({parent: this.props.parent});
     },
     componentDidMount: function(){
@@ -28,7 +32,7 @@ var Node = React.createClass({
     },
     proliferate: function() {
         if(!this.state.proliferated) {
-            this.props.onProliferate(this.props.node, this.state.parent, 5); //test number before hooking into backend
+            this.props.onProliferate(this.props.node, this.state.parent, 3); //test number before hooking into backend
             this.setState({ proliferated: !this.state.proliferated});
         }
         else {
@@ -53,7 +57,7 @@ var Node = React.createClass({
     },
     renderForm: function() {
         return (
-            <div className="node" style={this.style}>
+            <div className="node" style={this.state.style}>
             <textarea ref="newText" defaultValue={this.props.children} 
             className="form-control"></textarea>
             <button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />

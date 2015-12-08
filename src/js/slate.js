@@ -18,7 +18,8 @@ var Slate = React.createClass({
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
-        console.log($("#slate").css("height"));
+        this.height = $("#slate").height();
+        this.width = $("#slate").width();
     },
     nextId: function() {
         this.uniqueId = this.uniqueId || 0;
@@ -33,13 +34,8 @@ var Slate = React.createClass({
                 id: this.nextId(),
                 text: text,
                 style: {
-                    //document.getElementsByClassName("mystyle").style.height
-                    right: document.getElementById("slate").style.width / 2,
-                    top: document.getElementById("slate").style.height / 2,
-                    //right: window.innerWidth / 2,
-                    //top: window.innerHeight / 2,
-                    //right: window.outerWidth / 2,
-                    //top: window.outerHeight / 2,
+                    right: this.width / 2,
+                    top: this.height / 2,
                 },
             });
         } 
@@ -51,8 +47,8 @@ var Slate = React.createClass({
                     id: this.nextId(),
                     text: text,
                     style: {
-                        right: window.innerWidth / 2 + 250 * Math.sin((i / number) * 2 * Math.PI),
-                        top: window.innerHeight / 2 + 250 * Math.cos((i / number) * 2 * Math.PI),
+                        right: this.width / 2 + 300 * Math.sin((i / number) * 2 * Math.PI),
+                        top: this.height / 2 + 300 * Math.cos((i / number) * 2 * Math.PI),
                     },
                     parent: node
                 });
@@ -69,6 +65,14 @@ var Slate = React.createClass({
             }
             var angle = this.findAngle(parent, node, reference);
             console.log(angle * 57.29);
+
+            console.log(node.style);
+            node.style = {
+                right: node.style.right + 100,
+                top: node.style.top + 100,
+            }
+            console.log(node.style);
+
             /*for(i = 0; i < number; i++) {
                 arr.push({
                     id: this.nextId(),
@@ -85,7 +89,6 @@ var Slate = React.createClass({
     },
     proliferate: function(node, parent, number) {
         //proliferate needs to take in a number parameter later when hooking to the backend
-        //node math needed
         console.log('node:');
         console.dir(node);
         console.log('parent:');
