@@ -35,7 +35,7 @@ var Slate = React.createClass({
         this.uniqueId = this.uniqueId || 0;
         return this.uniqueId++;
     },
-    add: function(text, node, parent, number) {
+    add: function(text, location, node, parent, number) {
         var arr = this.state.nodes;
         if(node == null && parent == null) {
             arr.push({
@@ -61,22 +61,21 @@ var Slate = React.createClass({
             }
         }
         else {
-            /*console.log(angle);
-            console.log('y: ' + Math.cos(angle));
-            console.log('x: ' + Math.sin(angle));*/
+            var right = node.style.right;
+            var top = node.style.top;
+            console.log(right + ' ' + top);
 
-
-            /*for(i = 0; i < number; i++) {
+            for(i = 0; i < number; i++) {
                 arr.push({
                     id: this.nextId(),
                     text: text,
                     style: {
-                        right: 0,
-                        top: 0,
+                        right: right + 300 * Math.sin((i / number) * 2 * Math.PI),
+                        top: top + 300 * Math.cos((i / number) * 2 * Math.PI),
                     },
                     parent: node
                 });
-            }*/
+            }
         }
         this.setState({nodes: arr});
     },
@@ -95,13 +94,9 @@ var Slate = React.createClass({
 
         return displacement;
     },
-    proliferate: function(node, parent, number) {
+    proliferate: function(location, node, parent, number) {
         //proliferate needs to take in a number parameter later when hooking to the backend
-        console.log('node:');
-        console.dir(node);
-        console.log('parent:');
-        console.dir(parent);
-        this.add('node', node, parent, number);
+        this.add('node', location, node, parent, number);
     },
     findAngle(p0,p1,p2) {
         var a = Math.pow(p1.style.right-p0.style.right,2) + Math.pow(p1.style.top-p0.style.top,2),
@@ -134,7 +129,7 @@ var Slate = React.createClass({
                     style={this.state.nodes[i].style}
                     node={this.state.nodes[i]}
                     parent={this.state.nodes[i].parent}
-                    image={this.state.images[i]}
+                    image={this.state.images[i % 6]}
                     displacement={this.displace}
                 >{node.text}</Node>
             );
@@ -144,7 +139,7 @@ var Slate = React.createClass({
             <div className="slate" id="slate">
                 {this.state.nodes.map(this.eachNode)}
                 <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
-                    onClick={this.add.bind(null, "node", null, null, 1)}/>
+                    onClick={this.add.bind(null, "node", null, null, null, 1)}/>
             </div>
 
         );

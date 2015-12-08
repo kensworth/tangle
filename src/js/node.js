@@ -36,12 +36,8 @@ var Node = React.createClass({
     },
     proliferate: function() {
         if(!this.state.proliferated) {
-            //pre-backend hardcode
-            this.props.onProliferate(this.props.node, this.state.parent, 3);
-            this.setState({ proliferated: !this.state.proliferated});
-
-            //goal is to travel 300px in the vector of the node and parent and proliferate in PI radians
             if(this.state.parent != null) {
+                //displace 300 px away from the node in the angle formed by the node and its parent
                 this.setState({
                     imageStyle: {
                         right: this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
@@ -56,6 +52,10 @@ var Node = React.createClass({
                     },
                 });
             }
+            //pre-backend hardcode
+            //this.props.node is not the current node
+            this.props.onProliferate(this.state.style, this.props.node, this.state.parent, 3);
+            this.setState({ proliferated: !this.state.proliferated});
         }
         else {
             console.log('already proliferated');
