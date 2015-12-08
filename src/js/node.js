@@ -8,11 +8,8 @@ var Node = React.createClass({
     },
     componentWillMount: function() {
         this.style = {
-            //right: this.props.style.right + 'px',
-            //top: this.props.style.top + 'px',
             right: this.props.style.right + 'px',
             top: this.props.style.top + 'px',
-            //dont worry about setState style because nodes won't move
         };
         this.setState({parent: this.props.parent});
     },
@@ -31,11 +28,8 @@ var Node = React.createClass({
     },
     proliferate: function() {
         if(!this.state.proliferated) {
-            //methods
-            //pass parent, if null, then generic center screen add
             this.props.onProliferate(this.props.node, this.state.parent, 5); //test number before hooking into backend
             this.setState({ proliferated: !this.state.proliferated});
-            //endmethods
         }
         else {
             console.log('already proliferated');

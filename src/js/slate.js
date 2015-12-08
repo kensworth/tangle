@@ -18,6 +18,8 @@ var Slate = React.createClass({
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
+        console.log(document.getElementsByClassName("slate").style.width);
+        console.log(document.getElementsByClassName("slate").style.height);
     },
     nextId: function() {
         this.uniqueId = this.uniqueId || 0;
@@ -32,11 +34,9 @@ var Slate = React.createClass({
                 id: this.nextId(),
                 text: text,
                 style: {
-                    //slate width / 2?
-                    //document.getElementsByClassName("mystyle")
-                    //.style.height
-                    
-                    
+                    //document.getElementsByClassName("mystyle").style.height
+                    right: document.getElementsByClassName("slate").style.width / 2,
+                    top: document.getElementsByClassName("slate").style.height / 2,
                     //right: window.innerWidth / 2,
                     //top: window.innerHeight / 2,
                     //right: window.outerWidth / 2,
