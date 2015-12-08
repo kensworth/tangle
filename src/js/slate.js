@@ -63,7 +63,6 @@ var Slate = React.createClass({
         else {
             var right = location.right;
             var top = location.top;
-            console.log(right + ' ' + top);
 
             for(i = 0; i < number; i++) {
                 arr.push({
@@ -139,7 +138,7 @@ var Slate = React.createClass({
             <div className="slate" id="slate">
                 {this.state.nodes.map(this.eachNode)}
                 <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
-                    onClick={this.add.bind(null, "node", null, null, null, 1)}/>
+                    onClick={this.add.bind(null, "WSP", null, null, null, 1)}/>
             </div>
 
         );
