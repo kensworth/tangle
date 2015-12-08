@@ -61,14 +61,10 @@ var Slate = React.createClass({
             }
         }
         else {
-            var reference = {
-                style: {
-                    right: node.style.right,
-                    top: node.style.top - 10,
-                }
-            }
-            var angle = this.findAngle(parent, node, reference);
-            console.log(angle * 57.29);
+            /*console.log(angle);
+            console.log('y: ' + Math.cos(angle));
+            console.log('x: ' + Math.sin(angle));*/
+
 
             /*for(i = 0; i < number; i++) {
                 arr.push({
@@ -83,6 +79,21 @@ var Slate = React.createClass({
             }*/
         }
         this.setState({nodes: arr});
+    },
+    displace: function(node, parent) {
+        var reference = {
+            style: {
+                right: node.style.right,
+                top: node.style.top - 10,
+            }
+        }
+        var angle = this.findAngle(parent, node, reference);
+        var displacement = {
+            y: Math.cos(angle),
+            x: Math.sin(angle),
+        }
+
+        return displacement;
     },
     proliferate: function(node, parent, number) {
         //proliferate needs to take in a number parameter later when hooking to the backend
@@ -124,6 +135,7 @@ var Slate = React.createClass({
                     node={this.state.nodes[i]}
                     parent={this.state.nodes[i].parent}
                     image={this.state.images[i]}
+                    displacement={this.displace}
                 >{node.text}</Node>
             );
     },

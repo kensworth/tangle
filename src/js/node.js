@@ -19,10 +19,6 @@ var Node = React.createClass({
         }
     },
     componentWillMount: function() {
-        /*this.style = {
-            right: this.props.style.right + 'px',
-            top: this.props.style.top + 'px',
-        };*/
         this.setState({parent: this.props.parent});
     },
     componentDidMount: function(){
@@ -48,15 +44,15 @@ var Node = React.createClass({
             if(this.state.parent != null) {
                 this.setState({
                     imageStyle: {
-                        right: this.props.style.right + 100 + 'px',
-                        top: this.props.style.top + 100 + 'px',
+                        right: this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
+                        top: this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
                         backgroundImage: 'url(' + this.props.image + ')',
                         backgroundSize: 'cover',
                         opacity: '0.3',
                     },
                     style: {
-                        right: this.props.style.right + 100 + 'px',
-                        top: this.props.style.top + 100 + 'px',
+                        right: this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
+                        top: this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
                     },
                 });
             }
