@@ -14,7 +14,14 @@ var Slate = React.createClass({
     getInitialState: function() {
         return {
             nodes: [],
+            //hardcode until backend can be hooked up
             images: [
+                'http://ontherealny.com/wp-content/uploads/2013/01/washington_arch_1899.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/b/be/NYC_-_Washington_Square_Park.JPG',
+                'http://static01.nyt.com/images/2009/08/05/books/garner-600.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/f/f7/Washington_Square_Park_Chess_Players_by_David_Shankbone.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Washington_Square_northeast_entrance.jpg/325px-Washington_Square_northeast_entrance.jpg',
+                'http://onthesetofnewyork.com/locations/iamlegend/iamlegend04.jpg',
 
             ]
         };
