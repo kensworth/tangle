@@ -22,11 +22,11 @@ var Slate = React.createClass({
                 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Washington_Square_Park_Chess_Players_by_David_Shankbone.jpg',
                 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Washington_Square_northeast_entrance.jpg/325px-Washington_Square_northeast_entrance.jpg',
                 'http://onthesetofnewyork.com/locations/iamlegend/iamlegend04.jpg',
-
             ]
         };
     },
     componentDidMount: function(){
+        //add parallax tangl logo
         $(this.getDOMNode()).draggable();
         this.height = $("#slate").height();
         this.width = $("#slate").width();
@@ -38,8 +38,6 @@ var Slate = React.createClass({
     add: function(text, node, parent, number) {
         var arr = this.state.nodes;
         if(node == null && parent == null) {
-            console.log('node and parent null');
-            console.log('-------------------------------');
             arr.push({
                 id: this.nextId(),
                 text: text,
@@ -50,8 +48,6 @@ var Slate = React.createClass({
             });
         } 
         else if(parent == null) {
-            console.log('node not null, parent null');
-            console.log('-------------------------------');
             for(i = 0; i < number; i++) {
                 arr.push({
                     id: this.nextId(),
@@ -65,8 +61,6 @@ var Slate = React.createClass({
             }
         }
         else {
-            console.log('both not null');
-            console.log('-------------------------------');
             var reference = {
                 style: {
                     right: node.style.right,
@@ -141,10 +135,11 @@ var Slate = React.createClass({
             );
     },
     render: function() {
-        return (<div className="slate" id="slate">
-                    {this.state.nodes.map(this.eachNode)}
-                    <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
-                            onClick={this.add.bind(null, "node", null, null, 1)}/>
+        return (
+            <div className="slate" id="slate">
+                {this.state.nodes.map(this.eachNode)}
+                <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
+                    onClick={this.add.bind(null, "node", null, null, 1)}/>
             </div>
 
         );
