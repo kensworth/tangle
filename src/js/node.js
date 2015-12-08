@@ -4,28 +4,26 @@ var Node = React.createClass({
             editing: false,
             proliferated: false,
             parent: null,
-            /*style: {
+            style: {
                 right: this.props.style.right + 'px',
                 top: this.props.style.top + 'px',
-            },*/
+            },
+            imageStyle: {
+                //testing hard-coded background
+                right: this.props.style.right + 'px',
+                top: this.props.style.top + 'px',
+                backgroundImage: 'url(' + this.props.image + ')',
+                backgroundSize: 'cover',
+                opacity: '0.3',
+            }
         }
     },
     componentWillMount: function() {
-        this.style = {
+        /*this.style = {
             right: this.props.style.right + 'px',
             top: this.props.style.top + 'px',
-        };
+        };*/
         this.setState({parent: this.props.parent});
-        console.log(this.style);
-
-        this.imageStyle={
-            //testing hard-coded background
-            right: this.props.style.right + 'px',
-            top: this.props.style.top + 'px',
-            backgroundImage: 'url(' + this.props.image + ')',
-            backgroundSize: 'cover',
-            opacity: '0.3',
-        }
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
@@ -42,9 +40,26 @@ var Node = React.createClass({
     },
     proliferate: function() {
         if(!this.state.proliferated) {
-            this.props.onProliferate(this.props.node, this.state.parent, 3); //test number before hooking into backend
+            //pre-backend hardcode
+            this.props.onProliferate(this.props.node, this.state.parent, 3);
             this.setState({ proliferated: !this.state.proliferated});
-            //this.setState({ style: {}})
+
+            //goal is to travel 300px in the vector of the node and parent and proliferate in PI radians
+            if(this.state.parent != null) {
+                this.setState({
+                    imageStyle: {
+                        right: this.props.style.right + 100 + 'px',
+                        top: this.props.style.top + 100 + 'px',
+                        backgroundImage: 'url(' + this.props.image + ')',
+                        backgroundSize: 'cover',
+                        opacity: '0.3',
+                    },
+                    style: {
+                        right: this.props.style.right + 100 + 'px',
+                        top: this.props.style.top + 100 + 'px',
+                    },
+                });
+            }
         }
         else {
             console.log('already proliferated');
@@ -53,9 +68,9 @@ var Node = React.createClass({
     renderDisplay: function() {
         return (
             <div>
-                <div className="node" style={this.imageStyle}></div>
+                <div className="node" style={this.state.imageStyle}></div>
                 <div className="node"
-                    style={this.style}>
+                    style={this.state.style}>
                     <p>{this.props.children}</p>
                     <span>
                         <button onClick={this.edit}
