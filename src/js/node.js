@@ -56,6 +56,12 @@ var Node = React.createClass({
     handleDoubleClick: function(event) {
         console.log('double click');
     },
+    handleMouseOver: function(event) {
+        console.log('mouseover');
+    },
+    handleDragLeave: function(event) {
+        console.log('drag left');
+    },
     edit: function() {
         this.setState({editing: true});
     },
@@ -105,7 +111,9 @@ var Node = React.createClass({
                 <div className="node" style={this.state.imageStyle}></div>
                 <div className="node"
                     onClick={this.handleClick}
-                    ondblclick={this.handleDoubleClick} 
+                    onDoubleClick={this.handleDoubleClick}
+                    onMouseOver={this.handleMouseOver} 
+                    onDragLeave={this.handleDragLeave}
                     style={this.state.style}>
                     <p>{this.props.children}</p>
                     <span>
