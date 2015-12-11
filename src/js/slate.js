@@ -57,8 +57,8 @@ var Slate = React.createClass({
                 text: this.state.text[0],
                 details: this.state.details[0],
                 style: {
-                    right: this.width / 2,
-                    top: this.height / 2,
+                    right: this.width / 2 - 100,
+                    top: this.height / 2 - 100,
                 },
             });
         } 
@@ -69,8 +69,8 @@ var Slate = React.createClass({
                     text: this.state.text[node.id + i],
                     details: this.state.details[node.id + i],
                     style: {
-                        right: this.width / 2 + 300 * Math.sin((i / number) * 2 * Math.PI),
-                        top: this.height / 2 + 300 * Math.cos((i / number) * 2 * Math.PI),
+                        right: this.width / 2 - 100 + 300 * Math.sin((i / number) * 2 * Math.PI),
+                        top: this.height / 2 - 100 + 300 * Math.cos((i / number) * 2 * Math.PI),
                     },
                     parent: node,
                 });
