@@ -5,7 +5,6 @@ div#app {
     height: 100%;
     width: 100%;
     overflow: hidden;
-    /*overflow: scroll;*/
 }
 
 body {
@@ -45,8 +44,6 @@ div.nodeImage {
     padding: 20px;
     position: absolute;
     cursor: -webkit-grab;
-    -webkit-box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
-    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
     animation: fadeImage 2s;
 }
 
@@ -64,7 +61,7 @@ div.nodeImage {
         opacity: 0;
     }
     to {
-        opacity: 0.3;
+        opacity: 0.25;
     }
 }
 
@@ -73,7 +70,7 @@ div.node:active {
 }
 
 div.node p {
-    font-size: 22px;
+    font-size: 15px;
     padding: 1px;
     font-family: "Arvo", Arial;
     color: black;

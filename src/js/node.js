@@ -17,7 +17,7 @@ var Node = React.createClass({
                 top: this.props.style.top + 'px',
                 backgroundImage: 'url(' + this.props.image + ')',
                 backgroundSize: 'cover',
-                opacity: '0.3',
+                opacity: '0.25',
             },
         }
     },
@@ -86,7 +86,7 @@ var Node = React.createClass({
                         top: this.props.style.top - 15 + 'px',
                         backgroundImage: 'url(' + this.props.image + ')',
                         backgroundSize: 'cover',
-                        opacity: '0.6',
+                        opacity: '0.65',
                     }
                 });
             }
