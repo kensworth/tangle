@@ -95,7 +95,7 @@ var Node = React.createClass({
     render: function() {
         return (
             <div>
-                <div className="node" style={this.state.imageStyle}></div>
+                <div className="nodeImage" style={this.state.imageStyle}></div>
                 <div className="node"
                     onDoubleClick={this.proliferate} 
                     style={this.state.style}>

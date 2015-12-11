@@ -25,7 +25,6 @@ div.node {
     height: 150px;
     width: 150px;
     border-radius: 50%;
-    /*background-color: white;*/
     margin: 2px 0;
     padding: 20px;
     text-align: center;
@@ -34,10 +33,32 @@ div.node {
     cursor: -webkit-grab;
     -webkit-box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
     box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
-    animation: fadein 2s;
+    animation: fadeNode 2s;
 }
 
-@keyframes fadein {
+div.nodeImage {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin: 2px 0;
+    padding: 20px;
+    position: absolute;
+    cursor: -webkit-grab;
+    -webkit-box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+    animation: fadeImage 2s;
+}
+
+@keyframes fadeNode {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeImage {
     from {
         opacity: 0;
     }
