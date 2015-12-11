@@ -62,8 +62,8 @@ div.node > span {
 
 div.node button {
     margin: 2px;
-    right: 7px;
-    top:-30px;
+    right: 25px;
+    top:-20px;
 }
 
 div.node > textarea {

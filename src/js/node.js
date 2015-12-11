@@ -23,6 +23,38 @@ var Node = React.createClass({
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
+        /*var delay = 200, clicks = 0, timer = null;
+        $(this.getDOMNode()).on("click", function(e){
+            clicks++;  //count clicks
+            if(clicks === 1) {
+                timer = setTimeout(function() { 
+                    console.log('click');
+                    view();
+                    //view
+                    clicks = 0; //after action performed, reset counter
+                }, delay);
+            } else {
+                clearTimeout(timer); //prevent single-click action
+                clicks = 0; //after action performed, reset counter
+                console.log('double click');
+                focus();
+            }
+        })
+        .on("dblclick", function(e){
+            e.preventDefault(); //cancel system double-click event
+        });
+        function view() {
+            console.log('view');
+        }
+        function focus() {
+            console.log('focus');
+        }*/
+    },
+    handleClick: function(event) {
+        console.log('click');
+    },
+    handleDoubleClick: function(event) {
+        console.log('double click');
     },
     edit: function() {
         this.setState({editing: true});
@@ -67,41 +99,24 @@ var Node = React.createClass({
             console.log('already proliferated');
         }
     },
-    renderDisplay: function() {
+    render: function() {
         return (
             <div>
                 <div className="node" style={this.state.imageStyle}></div>
                 <div className="node"
+                    onClick={this.handleClick}
+                    ondblclick={this.handleDoubleClick} 
                     style={this.state.style}>
                     <p>{this.props.children}</p>
                     <span>
-                        <button onClick={this.edit}
-                                className="btn btn-primary glyphicon glyphicon-pencil"/>
-                        <button onClick={this.remove}
-                                className="btn btn-danger glyphicon glyphicon-trash"/>
                         <button onClick={this.proliferate}
-                                className="btn btn-success glyphicon glyphicon-zoom-in"/>        
+                                className="btn btn-success glyphicon glyphicon-zoom-in"/>
+                        <button onClick={this.remove}
+                                className="btn btn-danger glyphicon glyphicon-trash"/>        
                     </span>
                 </div>
             </div>
             );
-    },
-    renderForm: function() {
-        return (
-            <div className="node" style={this.style}>
-                <textarea ref="newText" defaultValue={this.props.children} 
-                className="form-control"></textarea>
-                <button onClick={this.save} className="btn btn-success btn-sm glyphicon glyphicon-floppy-disk" />
-            </div>
-            )
-    },
-    render: function() {
-        if (this.state.editing) {
-            return this.renderForm();
-        }
-        else {
-            return this.renderDisplay();
-        }
     }
 });
 

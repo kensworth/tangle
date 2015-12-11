@@ -101,6 +101,7 @@ var Slate = React.createClass({
         var a = Math.pow(p1.style.right-p0.style.right,2) + Math.pow(p1.style.top-p0.style.top,2),
         b = Math.pow(p1.style.right-p2.style.right,2) + Math.pow(p1.style.top-p2.style.top,2),
         c = Math.pow(p2.style.right-p0.style.right,2) + Math.pow(p2.style.top-p0.style.top,2);
+        
         if(p1.style.right < p0.style.right) {
             return 2 * Math.PI - Math.acos((a+b-c) / Math.sqrt(4 * a * b));
         }
