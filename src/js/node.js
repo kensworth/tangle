@@ -23,7 +23,6 @@ var Node = React.createClass({
     },
     componentWillMount: function() {
         this.setState({parent: this.props.parent});
-        //set details
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
@@ -49,7 +48,7 @@ var Node = React.createClass({
                         top: this.props.style.top - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
                         backgroundImage: 'url(' + this.props.image + ')',
                         backgroundSize: 'cover',
-                        opacity: '0.6',
+                        opacity: '0.5',
                     },
                     style: {
                         height: 180 + 'px',
@@ -61,6 +60,16 @@ var Node = React.createClass({
                 //fired to proliferate before rerender
                 right = this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x;
                 top = this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y;
+
+                $("#slate").animate({
+                    //right: right + 'px',
+                    //top: top + 'px',
+                    left: '+=' + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
+                    top: '-=' + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
+                }, 1000, function() {
+                    // Animation complete.
+                });
+
             }
             else {
                 this.setState({
@@ -83,7 +92,7 @@ var Node = React.createClass({
             }
 
             //pre-backend hardcode
-            //when backend is hooked up, each JSON object returned will be stored in an array, the length of which is the amount of nodes to be created, the text inside which is the information to be contained within
+            //when backend is hooked up, each JSON object returned will be stored in an array, the length of which is the amount of nodes to be created, the text inside which being the information to be contained within
             //this object will be inserted into proliferate, the function will be changed to accommodate for the dynamism
             this.props.onProliferate({right: right, top: top}, this.props.node, this.state.parent, 3);
             this.setState({ proliferated: !this.state.proliferated});

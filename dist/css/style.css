@@ -14,6 +14,7 @@ body {
 }
 
 div.slate {
+    position: absolute;
     background-color: white;
     height: 500%;
     width: 500%;
@@ -73,9 +74,8 @@ div.node:active {
 
 div.node p {
     font-size: 22px;
-    padding: 5px;
+    padding: 1px;
     font-family: "Arvo", Arial;
-    /*-webkit-text-stroke: 1px white;*/
     color: black;
 }
 
