@@ -1,9 +1,9 @@
 var Node = React.createClass({
     getInitialState: function() {
         return {
-            editing: false,
             proliferated: false,
             parent: null,
+            details: null,
             style: {
                 right: this.props.style.right + 'px',
                 top: this.props.style.top + 'px',
@@ -20,6 +20,7 @@ var Node = React.createClass({
     },
     componentWillMount: function() {
         this.setState({parent: this.props.parent});
+        //set details
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
@@ -50,24 +51,8 @@ var Node = React.createClass({
             console.log('focus');
         }*/
     },
-    handleClick: function(event) {
-        console.log('click');
-    },
-    handleDoubleClick: function(event) {
-        console.log('double click');
-    },
-    handleMouseOver: function(event) {
-        console.log('mouseover');
-    },
-    handleDragLeave: function(event) {
-        console.log('drag left');
-    },
-    edit: function() {
-        this.setState({editing: true});
-    },
-    save: function() {
-        this.props.onChange(this.refs.newText.getDOMNode().value, this.props.index);
-        this.setState({editing: false});
+    inspect: function() {
+        console.log('inspect');
     },
     remove: function() {
         this.props.onRemove(this.props.index);
@@ -97,7 +82,8 @@ var Node = React.createClass({
                 top = this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y;
             }
             //pre-backend hardcode
-            //this.props.node is not the current node
+            //when backend is hooked up, each JSON object returned will be stored in an array, the length of which is the amount of nodes to be created, the text inside which is the information to be contained within
+            //this object will be inserted into proliferate, the function will be changed to accommodate for the dynamism
             this.props.onProliferate({right: right, top: top}, this.props.node, this.state.parent, 3);
             this.setState({ proliferated: !this.state.proliferated});
         }
@@ -110,14 +96,11 @@ var Node = React.createClass({
             <div>
                 <div className="node" style={this.state.imageStyle}></div>
                 <div className="node"
-                    onClick={this.handleClick}
-                    onDoubleClick={this.handleDoubleClick}
-                    onMouseOver={this.handleMouseOver} 
-                    onDragLeave={this.handleDragLeave}
+                    onDoubleClick={this.proliferate} 
                     style={this.state.style}>
                     <p>{this.props.children}</p>
                     <span>
-                        <button onClick={this.proliferate}
+                        <button onClick={this.inspect}
                                 className="btn btn-success glyphicon glyphicon-zoom-in"/>
                         <button onClick={this.remove}
                                 className="btn btn-danger glyphicon glyphicon-trash"/>        

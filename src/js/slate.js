@@ -1,20 +1,34 @@
 var Node = require('./node');
 
 var Slate = React.createClass({
-    propTypes: {
-        count: function(props, propName) {
-            if (typeof props[propName] !== "number"){
-                return new Error('The count property must be a number');
-            }
-            if (props[propName] > 100) {
-                return new Error("Creating " + props[propName] + " nodes is ridiculous");
-            }
-        }
-    },
     getInitialState: function() {
         return {
             nodes: [],
             //hardcode until backend can be hooked up
+            text: [
+                't1',
+                't2',
+                't3',
+                't4',
+                't5',
+                't6',
+                't7',
+                't8',
+                't9',
+                't10',
+            ],
+            details: [
+                'd1',
+                'd2',
+                'd3',
+                'd4',
+                'd5',
+                'd6',
+                'd7',
+                'd8',
+                'd9',
+                'd10',
+            ],
             images: [
                 'http://ontherealny.com/wp-content/uploads/2013/01/washington_arch_1899.jpg',
                 'https://upload.wikimedia.org/wikipedia/commons/b/be/NYC_-_Washington_Square_Park.JPG',
@@ -35,12 +49,13 @@ var Slate = React.createClass({
         this.uniqueId = this.uniqueId || 0;
         return this.uniqueId++;
     },
-    add: function(text, location, node, parent, number) {
+    add: function(location, node, parent, number) {
         var arr = this.state.nodes;
         if(node == null && parent == null) {
             arr.push({
                 id: this.nextId(),
-                text: text,
+                text: this.state.text[0],
+                details: this.state.details[0],
                 style: {
                     right: this.width / 2,
                     top: this.height / 2,
@@ -51,7 +66,8 @@ var Slate = React.createClass({
             for(i = 0; i < number; i++) {
                 arr.push({
                     id: this.nextId(),
-                    text: text,
+                    text: this.state.text[0],
+                    details: this.state.details[0],
                     style: {
                         right: this.width / 2 + 300 * Math.sin((i / number) * 2 * Math.PI),
                         top: this.height / 2 + 300 * Math.cos((i / number) * 2 * Math.PI),
@@ -67,7 +83,8 @@ var Slate = React.createClass({
             for(i = 0; i < number; i++) {
                 arr.push({
                     id: this.nextId(),
-                    text: text,
+                    text: this.state.text[0],
+                    details: this.state.details[0],
                     style: {
                         right: right + 300 * Math.sin((i / number) * 2 * Math.PI),
                         top: top + 300 * Math.cos((i / number) * 2 * Math.PI),
@@ -95,7 +112,7 @@ var Slate = React.createClass({
     },
     proliferate: function(location, node, parent, number) {
         //proliferate needs to take in a number parameter later when hooking to the backend
-        this.add('node', location, node, parent, number);
+        this.add(location, node, parent, number);
     },
     findAngle(p0,p1,p2) {
         var a = Math.pow(p1.style.right-p0.style.right,2) + Math.pow(p1.style.top-p0.style.top,2),
@@ -139,7 +156,7 @@ var Slate = React.createClass({
             <div className="slate" id="slate">
                 {this.state.nodes.map(this.eachNode)}
                 <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
-                    onClick={this.add.bind(null, "WSP", null, null, null, 1)}/>
+                    onClick={this.add.bind(null, null, null, null, 1)}/>
             </div>
 
         );
