@@ -24,35 +24,9 @@ var Node = React.createClass({
     },
     componentDidMount: function(){
         $(this.getDOMNode()).draggable();
-        /*var delay = 200, clicks = 0, timer = null;
-        $(this.getDOMNode()).on("click", function(e){
-            clicks++;  //count clicks
-            if(clicks === 1) {
-                timer = setTimeout(function() { 
-                    console.log('click');
-                    view();
-                    //view
-                    clicks = 0; //after action performed, reset counter
-                }, delay);
-            } else {
-                clearTimeout(timer); //prevent single-click action
-                clicks = 0; //after action performed, reset counter
-                console.log('double click');
-                focus();
-            }
-        })
-        .on("dblclick", function(e){
-            e.preventDefault(); //cancel system double-click event
-        });
-        function view() {
-            console.log('view');
-        }
-        function focus() {
-            console.log('focus');
-        }*/
     },
     inspect: function() {
-        console.log('inspect');
+        console.log(this.props.details);
     },
     remove: function() {
         this.props.onRemove(this.props.index);
@@ -70,7 +44,7 @@ var Node = React.createClass({
                         top: this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
                         backgroundImage: 'url(' + this.props.image + ')',
                         backgroundSize: 'cover',
-                        opacity: '0.3',
+                        opacity: '0.6',
                     },
                     style: {
                         right: this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
@@ -81,6 +55,22 @@ var Node = React.createClass({
                 right = this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x;
                 top = this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y;
             }
+            else {
+                this.setState({
+                    style: {
+                        right: this.props.style.right + 'px',
+                        top: this.props.style.top + 'px',
+                    },
+                    imageStyle: {
+                        right: this.props.style.right + 'px',
+                        top: this.props.style.top + 'px',
+                        backgroundImage: 'url(' + this.props.image + ')',
+                        backgroundSize: 'cover',
+                        opacity: '0.6',
+                    }
+                });
+            }
+
             //pre-backend hardcode
             //when backend is hooked up, each JSON object returned will be stored in an array, the length of which is the amount of nodes to be created, the text inside which is the information to be contained within
             //this object will be inserted into proliferate, the function will be changed to accommodate for the dynamism

@@ -63,11 +63,11 @@ var Slate = React.createClass({
             });
         } 
         else if(parent == null) {
-            for(i = 0; i < number; i++) {
+            for(i = 1; i <= number; i++) {
                 arr.push({
                     id: this.nextId(),
-                    text: this.state.text[0],
-                    details: this.state.details[0],
+                    text: this.state.text[node.id + i],
+                    details: this.state.details[node.id + i],
                     style: {
                         right: this.width / 2 + 300 * Math.sin((i / number) * 2 * Math.PI),
                         top: this.height / 2 + 300 * Math.cos((i / number) * 2 * Math.PI),
@@ -80,11 +80,11 @@ var Slate = React.createClass({
             var right = location.right;
             var top = location.top;
 
-            for(i = 0; i < number; i++) {
+            for(i = 1; i <= number; i++) {
                 arr.push({
                     id: this.nextId(),
-                    text: this.state.text[0],
-                    details: this.state.details[0],
+                    text: this.state.text[node.id + i],
+                    details: this.state.details[node.id + i],
                     style: {
                         right: right + 300 * Math.sin((i / number) * 2 * Math.PI),
                         top: top + 300 * Math.cos((i / number) * 2 * Math.PI),
@@ -146,6 +146,7 @@ var Slate = React.createClass({
                     style={this.state.nodes[i].style}
                     node={this.state.nodes[i]}
                     parent={this.state.nodes[i].parent}
+                    details={this.state.nodes[i].details}
                     image={this.state.images[i % 6]}
                     displacement={this.displace}
                 >{node.text}</Node>
