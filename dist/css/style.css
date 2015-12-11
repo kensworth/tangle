@@ -34,6 +34,16 @@ div.node {
     cursor: -webkit-grab;
     -webkit-box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
     box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.3;
+    }
 }
 
 div.node:active {
@@ -53,17 +63,15 @@ div.node:hover > span {
 }
 
 div.node > span {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
+    position: relative;
+    right: 0;
+    top: 20px;
     opacity: 0;
     transition: opacity .25s linear;
 }
 
 div.node button {
     margin: 2px;
-    right: 25px;
-    top:-20px;
 }
 
 div.node > textarea {

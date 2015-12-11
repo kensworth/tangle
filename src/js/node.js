@@ -5,17 +5,20 @@ var Node = React.createClass({
             parent: null,
             details: null,
             style: {
+                height: 150 + 'px',
+                width: 150 + 'px',
                 right: this.props.style.right + 'px',
                 top: this.props.style.top + 'px',
             },
             imageStyle: {
-                //testing hard-coded background
+                height: 150 + 'px',
+                width: 150 + 'px',
                 right: this.props.style.right + 'px',
                 top: this.props.style.top + 'px',
                 backgroundImage: 'url(' + this.props.image + ')',
                 backgroundSize: 'cover',
                 opacity: '0.3',
-            }
+            },
         }
     },
     componentWillMount: function() {
@@ -40,15 +43,19 @@ var Node = React.createClass({
                 //displace 300 px away from the node in the angle formed by the node and its parent
                 this.setState({
                     imageStyle: {
-                        right: this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
-                        top: this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
+                        height: 180 + 'px',
+                        width: 180 + 'px',
+                        right: this.props.style.right - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
+                        top: this.props.style.top - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
                         backgroundImage: 'url(' + this.props.image + ')',
                         backgroundSize: 'cover',
                         opacity: '0.6',
                     },
                     style: {
-                        right: this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
-                        top: this.props.style.top + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
+                        height: 180 + 'px',
+                        width: 180 + 'px',
+                        right: this.props.style.right - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
+                        top: this.props.style.top - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
                     },
                 });
                 //fired to proliferate before rerender
@@ -58,12 +65,16 @@ var Node = React.createClass({
             else {
                 this.setState({
                     style: {
-                        right: this.props.style.right + 'px',
-                        top: this.props.style.top + 'px',
+                        height: 180 + 'px',
+                        width: 180 + 'px',
+                        right: this.props.style.right - 15 + 'px',
+                        top: this.props.style.top - 15 + 'px',
                     },
                     imageStyle: {
-                        right: this.props.style.right + 'px',
-                        top: this.props.style.top + 'px',
+                        height: 180 + 'px',
+                        width: 180 + 'px',
+                        right: this.props.style.right - 15 + 'px',
+                        top: this.props.style.top - 15 + 'px',
                         backgroundImage: 'url(' + this.props.image + ')',
                         backgroundSize: 'cover',
                         opacity: '0.6',
@@ -89,7 +100,7 @@ var Node = React.createClass({
                     onDoubleClick={this.proliferate} 
                     style={this.state.style}>
                     <p>{this.props.children}</p>
-                    <span>
+                    <span style={this.state.buttonStyle}>
                         <button onClick={this.inspect}
                                 className="btn btn-success glyphicon glyphicon-zoom-in"/>
                         <button onClick={this.remove}
