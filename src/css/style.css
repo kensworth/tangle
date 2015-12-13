@@ -14,11 +14,12 @@ body {
 
 div.slate {
     position: absolute;
-    background-color: white;
-    height: 500%;
-    width: 500%;
-    top: -200%;
-    left: -200%;
+    background-color: gray;
+    height: 100%;
+    width: 100%;
+    top: -0%;
+    left: -0%;
+    cursor: -webkit-grab;
 }
 
 div.node {
@@ -30,7 +31,21 @@ div.node {
     text-align: center;
     word-wrap: break-word;
     position: absolute;
-    cursor: -webkit-grab;
+    -webkit-box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+    animation: fadeNode 2s;
+}
+
+div.inspect {
+    width: 300px;
+    display: inline-block;
+    border-radius: 10px;
+    margin: 2px 0;
+    padding: 20px;
+    text-align: center;
+    word-wrap: break-word;
+    position: absolute;
+    background-color: white;
     -webkit-box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
     box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
     animation: fadeNode 2s;
@@ -43,7 +58,6 @@ div.nodeImage {
     margin: 2px 0;
     padding: 20px;
     position: absolute;
-    cursor: -webkit-grab;
     animation: fadeImage 2s;
 }
 
@@ -63,10 +77,6 @@ div.nodeImage {
     to {
         opacity: 0.25;
     }
-}
-
-div.node:active {
-    cursor: -webkit-grabbing;
 }
 
 div.node p {

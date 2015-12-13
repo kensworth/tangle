@@ -7,7 +7,7 @@ var Slate = React.createClass({
             //hardcode until backend can be hooked up
             //NOT FINAL, ONLY FOR TESTING AND PURPOSES OF PRESENTATION
             text: [
-                'WSP',
+                'Washington Square Park',
                 'History',
                 'Location',
                 'Events',
@@ -22,7 +22,7 @@ var Slate = React.createClass({
                 'Washington Square Park is a 9.75-acre public park in the New York City neighborhood of Greenwich Village, Manhattan. One of the best known of New York City\'s 1,900 public parks, it is a landmark as well as a meeting place and center for cultural activity. It is operated by the New York City Department of Parks and Recreation.',
                 'Washington Square Park is named for George Washington (1732-1799), the commander of the Continental Army, who was inaugurated in New York City as the first President of the United States on April 30, 1789. ',
                 'Washington Square Park is located directly on the intersection of 5th Avenue and West 4th Street, in the heart of Lower Manhattan',
-                'Christmas Eve Caroling at the Washington Arch, Thursday, December 24, 2015 from 5:00 p.m.–6:00 p.m.',
+                'Christmas Eve Caroling at the Washington Arch, Thursday, December 24, 2015 from 5:00 p.m. to 6:00 p.m.',
                 'Washington Square Park is 56 degrees Farenheit today, with a brisk breeze and a 10% chance of showers',
                 'Washington Square Park is home to many famous park performances. There are scores of musicians who play in the park, the most famous of whom is arguably Collin Huggins, also known as the "Crazy Piano Man"',
                 'The Arch is likely the most recognizable feature of the park. The Arch is a marble triumphal arch built in 1892 in Washington Square Park in the Greenwich Village neighborhood of Lower Manhattan in New York City. It celebrates the centennial of George Washington\'s inauguration as President of the United States in 1789 and forms the grand southern terminus of Fifth Avenue.',
@@ -50,8 +50,6 @@ var Slate = React.createClass({
         $(this.getDOMNode()).draggable();
         this.height = $("#slate").height();
         this.width = $("#slate").width();
-        console.log(this.width / 2);
-        console.log(this.height / 2);
     },
     nextId: function() {
         this.uniqueId = this.uniqueId || 0;
@@ -65,8 +63,9 @@ var Slate = React.createClass({
                 text: this.state.text[0],
                 details: this.state.details[0],
                 style: {
-                    right: this.width / 2,
-                    top: this.height / 2,
+                    //75 is 1/2 node height and width
+                    right: this.width / 2 - 75,
+                    top: this.height / 2 - 75,
                 },
             });
         } 
@@ -75,11 +74,11 @@ var Slate = React.createClass({
                 var id = this.nextId();
                 arr.push({
                     id: id,
-                    text: this.state.text[id],
-                    details: this.state.details[id],
+                    text: this.state.text[id % 10],
+                    details: this.state.details[id % 10],
                     style: {
-                        right: this.width / 2 + 300 * Math.sin((i / number) * 2 * Math.PI),
-                        top: this.height / 2 + 300 * Math.cos((i / number) * 2 * Math.PI),
+                        right: this.width / 2 + 300 * Math.sin((i / number) * 2 * Math.PI) - 75,
+                        top: this.height / 2 + 300 * Math.cos((i / number) * 2 * Math.PI) - 75,
                     },
                     parent: node,
                 });
@@ -94,8 +93,8 @@ var Slate = React.createClass({
                 var id = this.nextId();
                 arr.push({
                     id: id,
-                    text: this.state.text[id],
-                    details: this.state.details[id],
+                    text: this.state.text[id % 10],
+                    details: this.state.details[id % 10],
                     style: {
                         right: right + 300 * Math.sin((i / number) * 2 * Math.PI),
                         top: top + 300 * Math.cos((i / number) * 2 * Math.PI),
@@ -157,8 +156,8 @@ var Slate = React.createClass({
                     style={this.state.nodes[i].style}
                     node={this.state.nodes[i]}
                     parent={this.state.nodes[i].parent}
-                    details={this.state.nodes[i].details}
-                    image={this.state.images[i]}
+                    details={this.state.nodes[i % 10].details}
+                    image={this.state.images[i % 10]}
                     displacement={this.displace}
                 >{node.text}</Node>
             );

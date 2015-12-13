@@ -2,6 +2,7 @@ var Node = React.createClass({
     getInitialState: function() {
         return {
             proliferated: false,
+            inspecting: false,
             parent: null,
             details: null,
             style: {
@@ -19,16 +20,20 @@ var Node = React.createClass({
                 backgroundSize: 'cover',
                 opacity: '0.25',
             },
+            inspectStyle: {
+                right: this.props.style.right + 150 + 'px',
+                top: this.props.style.top + 'px',
+            }
         }
     },
     componentWillMount: function() {
         this.setState({parent: this.props.parent});
     },
     componentDidMount: function(){
-        $(this.getDOMNode()).draggable();
+        //$(this.getDOMNode()).draggable();
     },
     inspect: function() {
-        console.log(this.props.details);
+        this.setState({inspecting: !this.state.inspecting})
     },
     remove: function() {
         this.props.onRemove(this.props.index);
@@ -40,12 +45,14 @@ var Node = React.createClass({
 
             if(this.state.parent != null) {
                 //displace 300 px away from the node in the angle formed by the node and its parent
+                var displacement = this.props.displacement(this.props.node, this.state.parent);
+                var style = this.props.style;
                 this.setState({
                     imageStyle: {
                         height: 180 + 'px',
                         width: 180 + 'px',
-                        right: this.props.style.right - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
-                        top: this.props.style.top - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
+                        right: style.right - 15 + 300 * displacement.x + 'px',
+                        top: style.top - 15 + 300 * displacement.y + 'px',
                         backgroundImage: 'url(' + this.props.image + ')',
                         backgroundSize: 'cover',
                         opacity: '0.5',
@@ -53,8 +60,12 @@ var Node = React.createClass({
                     style: {
                         height: 180 + 'px',
                         width: 180 + 'px',
-                        right: this.props.style.right - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
-                        top: this.props.style.top - 15 + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
+                        right: style.right - 15 + 300 * displacement.x + 'px',
+                        top: style.top - 15 + 300 * displacement.y + 'px',
+                    },
+                    inspectStyle: {
+                        right: style.right + 135 + 300 * displacement.x + 'px',
+                        top: style.top + 300 * displacement.y + 'px',
                     },
                 });
                 //fired to proliferate before rerender
@@ -101,7 +112,7 @@ var Node = React.createClass({
             console.log('already proliferated');
         }
     },
-    render: function() {
+    normalView: function() {
         return (
             <div>
                 <div className="nodeImage" style={this.state.imageStyle}></div>
@@ -117,7 +128,38 @@ var Node = React.createClass({
                     </span>
                 </div>
             </div>
-            );
+        );
+    },
+    inspectView: function() {
+        return (
+            <div>
+                <div>
+                    <div className="nodeImage" style={this.state.imageStyle}></div>
+                    <div className="node"
+                        onDoubleClick={this.proliferate} 
+                        style={this.state.style}>
+                        <p>{this.props.children}</p>
+                        <span style={this.state.buttonStyle}>
+                            <button onClick={this.inspect}
+                                    className="btn btn-success glyphicon glyphicon-zoom-in"/>
+                            <button onClick={this.remove}
+                                    className="btn btn-danger glyphicon glyphicon-trash"/>        
+                        </span>
+                    </div>
+                </div>
+                <div className="inspect" style={this.state.inspectStyle}>
+                    <p>{this.props.details}</p>
+                </div>
+            </div>
+        );
+    },
+    render: function() {
+        if(this.state.inspecting) {
+            return this.inspectView();
+        }
+        else {
+            return this.normalView();
+        }
     }
 });
 
