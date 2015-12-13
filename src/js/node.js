@@ -1,5 +1,3 @@
-var Inspector = require('./inspector');
-
 var Node = React.createClass({
     getInitialState: function() {
         return {
@@ -22,17 +20,24 @@ var Node = React.createClass({
                 backgroundSize: 'cover',
                 opacity: '0.25',
             },
-            inspectStyle: {
+            /*inspectStyle: {
                 right: this.props.style.right + 155 + 'px',
                 top: this.props.style.top + 5 + 'px',
-            }
+            }*/
         }
     },
     componentWillMount: function() {
         this.setState({parent: this.props.parent});
     },
     inspect: function() {
-        this.setState({inspecting: !this.state.inspecting})
+        this.setState({inspecting: !this.state.inspecting});
+        var inspecting = !this.state.inspecting;
+        if(inspecting) {
+            this.props.onInspect(this.props.index);
+        }
+        else {
+            this.props.removeInspect(this.props.index);
+        }
     },
     remove: function() {
         this.props.onRemove(this.props.index);
@@ -62,10 +67,10 @@ var Node = React.createClass({
                         right: style.right - 15 + 300 * displacement.x + 'px',
                         top: style.top - 15 + 300 * displacement.y + 'px',
                     },
-                    inspectStyle: {
+                    /*inspectStyle: {
                         right: style.right + 170 + 300 * displacement.x + 'px',
                         top: style.top + 5 + 300 * displacement.y + 'px',
-                    },
+                    },*/
                 });
                 //fired to proliferate before rerender
                 right = this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x;
@@ -98,10 +103,10 @@ var Node = React.createClass({
                         backgroundSize: 'cover',
                         opacity: '0.65',
                     },
-                    inspectStyle: {
+                    /*inspectStyle: {
                         right: this.props.style.right + 170 + 'px',
                         top: this.props.style.top + 5 + 'px',
-                    },
+                    },*/
                 });
             }
 
@@ -115,7 +120,7 @@ var Node = React.createClass({
             console.log('already proliferated');
         }
     },
-    normalView: function() {
+    render: function() {
         return (
             <div>
                 <div className="nodeImage" style={this.state.imageStyle}></div>
@@ -132,37 +137,6 @@ var Node = React.createClass({
                 </div>
             </div>
         );
-    },
-    inspectView: function() {
-        return (
-            <div>
-                <div>
-                    <div className="nodeImage" style={this.state.imageStyle}></div>
-                    <div className="node"
-                        onDoubleClick={this.proliferate} 
-                        style={this.state.style}>
-                        <p>{this.props.children}</p>
-                        <span style={this.state.buttonStyle}>
-                            <button onClick={this.inspect}
-                                    className="btn btn-success glyphicon glyphicon-zoom-in"/>
-                            <button onClick={this.remove}
-                                    className="btn btn-danger glyphicon glyphicon-trash"/>        
-                        </span>
-                    </div>
-                </div>
-                <div className="inspect" style={this.state.inspectStyle}>
-                    <p>{this.props.details}</p>
-                </div>
-            </div>
-        );
-    },
-    render: function() {
-        if(this.state.inspecting) {
-            return this.inspectView();
-        }
-        else {
-            return this.normalView();
-        }
     }
 });
 

@@ -1,9 +1,11 @@
 var Node = require('./node');
+var Inspector = require('./inspector');
 
 var Slate = React.createClass({
     getInitialState: function() {
         return {
             nodes: [],
+            inspects: [],
             //hardcode until backend can be hooked up
             //NOT FINAL, ONLY FOR TESTING AND PURPOSES OF PRESENTATION
             text: [
@@ -142,16 +144,39 @@ var Slate = React.createClass({
         this.setState({nodes:arr});
     },
     remove: function(i) {
-        var arr = this.state.nodes;
+        var arr = this.state.inspects;
         arr.splice(i, 1);
         this.setState({nodes: arr});
     },
+    inspect: function(i) {
+        var arr = this.state.inspects;
+        arr.push(this.state.nodes[i]);
+        this.setState({inspects: arr});
+        console.log(this.state.inspects);
+    },
+    removeInspect: function(i) {
+        var arr = this.state.inspects;
+        arr.splice(i, 1);
+        this.setState({inspects: arr});
+    },
+    eachInspect: function(node, i) {
+        return (
+            <Inspector 
+                style={this.state.inspects[i].style}
+                details={this.state.inspects[i].details}
+                >
+            </Inspector>
+        );
+    },
     eachNode: function(node, i) {
         return (
-                <Node key={node.id}
+                <Node 
+                    key={node.id}
                     index={i}
                     onChange={this.update}
                     onRemove={this.remove}
+                    onInspect={this.inspect}
+                    removeInspect={this.removeInspect}
                     onProliferate={this.proliferate}
                     style={this.state.nodes[i].style}
                     node={this.state.nodes[i]}
@@ -166,6 +191,7 @@ var Slate = React.createClass({
         return (
             <div className="slate" id="slate">
                 {this.state.nodes.map(this.eachNode)}
+                {this.state.inspects.map(this.eachInspect)}
                 <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
                     onClick={this.add.bind(null, null, null, null, 1)}/>
             </div>
