@@ -14,11 +14,11 @@ body {
 
 div.slate {
     position: absolute;
-    background-color: gray;
-    height: 100%;
-    width: 100%;
-    top: -0%;
-    left: -0%;
+    background-color: white;
+    height: 500%;
+    width: 500%;
+    top: -200%;
+    left: -200%;
     cursor: -webkit-grab;
 }
 
