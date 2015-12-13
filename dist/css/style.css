@@ -46,8 +46,8 @@ div.inspect {
     word-wrap: break-word;
     position: absolute;
     background-color: white;
-    -webkit-box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
-    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+    -webkit-box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .2);
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .2);
     animation: fadeNode 2s;
 }
 

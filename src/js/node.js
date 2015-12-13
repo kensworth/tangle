@@ -1,3 +1,5 @@
+var Inspector = require('./inspector');
+
 var Node = React.createClass({
     getInitialState: function() {
         return {
@@ -21,16 +23,13 @@ var Node = React.createClass({
                 opacity: '0.25',
             },
             inspectStyle: {
-                right: this.props.style.right + 150 + 'px',
-                top: this.props.style.top + 'px',
+                right: this.props.style.right + 155 + 'px',
+                top: this.props.style.top + 5 + 'px',
             }
         }
     },
     componentWillMount: function() {
         this.setState({parent: this.props.parent});
-    },
-    componentDidMount: function(){
-        //$(this.getDOMNode()).draggable();
     },
     inspect: function() {
         this.setState({inspecting: !this.state.inspecting})
@@ -64,8 +63,8 @@ var Node = React.createClass({
                         top: style.top - 15 + 300 * displacement.y + 'px',
                     },
                     inspectStyle: {
-                        right: style.right + 135 + 300 * displacement.x + 'px',
-                        top: style.top + 300 * displacement.y + 'px',
+                        right: style.right + 170 + 300 * displacement.x + 'px',
+                        top: style.top + 5 + 300 * displacement.y + 'px',
                     },
                 });
                 //fired to proliferate before rerender
@@ -100,8 +99,8 @@ var Node = React.createClass({
                         opacity: '0.65',
                     },
                     inspectStyle: {
-                        right: this.props.style.right + 165 + 'px',
-                        top: this.props.style.top + 'px',
+                        right: this.props.style.right + 170 + 'px',
+                        top: this.props.style.top + 5 + 'px',
                     },
                 });
             }
