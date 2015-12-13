@@ -37,9 +37,9 @@ var Slate = React.createClass({
                 'http://onthesetofnewyork.com/locations/iamlegend/iamlegend04.jpg',
                 'http://www.thefacebeauty.co.uk/blog/wp-content/uploads/2010/11/cold-weather.jpg',
                 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Washington_Square_northeast_entrance.jpg/325px-Washington_Square_northeast_entrance.jpg',
-                'http://www.gothamgazette.com/images/graphics/2014/03/Washington_Square_Park_2_nycgovparks_org.jpg',
-                'https://upload.wikimedia.org/wikipedia/commons/f/f7/Washington_Square_Park_Chess_Players_by_David_Shankbone.jpg',
                 'http://ontherealny.com/wp-content/uploads/2013/01/washington_arch_1899.jpg',
+                'https://upload.wikimedia.org/wikipedia/commons/f/f7/Washington_Square_Park_Chess_Players_by_David_Shankbone.jpg',
+                'http://www.gothamgazette.com/images/graphics/2014/03/Washington_Square_Park_2_nycgovparks_org.jpg',
                 'http://graphics8.nytimes.com/images/2007/09/30/nyregion/wash600.jpg',
             ]
             //end of hardcode
@@ -50,6 +50,8 @@ var Slate = React.createClass({
         $(this.getDOMNode()).draggable();
         this.height = $("#slate").height();
         this.width = $("#slate").width();
+        console.log(this.width / 2);
+        console.log(this.height / 2);
     },
     nextId: function() {
         this.uniqueId = this.uniqueId || 0;
@@ -63,8 +65,8 @@ var Slate = React.createClass({
                 text: this.state.text[0],
                 details: this.state.details[0],
                 style: {
-                    right: this.width / 2 - 100,
-                    top: this.height / 2 - 100,
+                    right: this.width / 2,
+                    top: this.height / 2,
                 },
             });
         } 
@@ -73,11 +75,11 @@ var Slate = React.createClass({
                 var id = this.nextId();
                 arr.push({
                     id: id,
-                    text: this.state.text[id % 10],
-                    details: this.state.details[id % 10],
+                    text: this.state.text[id],
+                    details: this.state.details[id],
                     style: {
-                        right: this.width / 2 - 100 + 300 * Math.sin((i / number) * 2 * Math.PI),
-                        top: this.height / 2 - 100 + 300 * Math.cos((i / number) * 2 * Math.PI),
+                        right: this.width / 2 + 300 * Math.sin((i / number) * 2 * Math.PI),
+                        top: this.height / 2 + 300 * Math.cos((i / number) * 2 * Math.PI),
                     },
                     parent: node,
                 });
@@ -87,12 +89,13 @@ var Slate = React.createClass({
             var right = location.right;
             var top = location.top;
 
+            //images going normally, text and details skipping
             for(i = 1; i <= number; i++) {
                 var id = this.nextId();
                 arr.push({
-                    id: this.nextId(),
-                    text: this.state.text[id % 10],
-                    details: this.state.details[id % 10],
+                    id: id,
+                    text: this.state.text[id],
+                    details: this.state.details[id],
                     style: {
                         right: right + 300 * Math.sin((i / number) * 2 * Math.PI),
                         top: top + 300 * Math.cos((i / number) * 2 * Math.PI),
@@ -154,8 +157,8 @@ var Slate = React.createClass({
                     style={this.state.nodes[i].style}
                     node={this.state.nodes[i]}
                     parent={this.state.nodes[i].parent}
-                    details={this.state.nodes[i % 10].details}
-                    image={this.state.images[i % 10]}
+                    details={this.state.nodes[i].details}
+                    image={this.state.images[i]}
                     displacement={this.displace}
                 >{node.text}</Node>
             );

@@ -64,8 +64,8 @@ var Node = React.createClass({
                 $("#slate").animate({
                     //right: right + 'px',
                     //top: top + 'px',
-                    left: '+=' + 300 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
-                    top: '-=' + 300 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
+                    left: '+=' + 600 * this.props.displacement(this.props.node, this.state.parent).x + 'px',
+                    top: '-=' + 600 * this.props.displacement(this.props.node, this.state.parent).y + 'px',
                 }, 1000, function() {
                     // Animation complete.
                 });
