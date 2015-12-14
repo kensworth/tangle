@@ -13,6 +13,7 @@ body {
 }
 
 div.slate {
+    /*background-image: url('../img/tangl.jpg');*/
     position: absolute;
     background-color: white;
     height: 500%;

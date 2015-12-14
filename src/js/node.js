@@ -5,6 +5,10 @@ var Node = React.createClass({
             inspecting: false,
             parent: null,
             details: null,
+            location: {
+                right: this.props.style.right + 155,
+                top: this.props.style.top + 5,
+            },
             style: {
                 height: 150 + 'px',
                 width: 150 + 'px',
@@ -20,10 +24,11 @@ var Node = React.createClass({
                 backgroundSize: 'cover',
                 opacity: '0.25',
             },
-            /*inspectStyle: {
-                right: this.props.style.right + 155 + 'px',
-                top: this.props.style.top + 5 + 'px',
-            }*/
+            inspectStyle: {
+                right: null,
+                top: null,
+                opacity: '0',
+            },
         }
     },
     componentWillMount: function() {
@@ -33,10 +38,22 @@ var Node = React.createClass({
         this.setState({inspecting: !this.state.inspecting});
         var inspecting = !this.state.inspecting;
         if(inspecting) {
-            this.props.onInspect(this.props.index);
+            this.setState({
+                inspectStyle: {
+                    right: this.state.location.right + 'px',
+                    top: this.state.location.top + 'px',
+                    opacity: '1',
+                },
+            });
         }
         else {
-            this.props.removeInspect(this.props.index);
+            this.setState({
+                inspectStyle: {
+                    right: this.state.location.right + 155 + 'px',
+                    top: this.state.location.top + 155 + 'px',
+                    opacity: '0',
+                },
+            });
         }
     },
     remove: function() {
@@ -52,6 +69,14 @@ var Node = React.createClass({
                 var displacement = this.props.displacement(this.props.node, this.state.parent);
                 var style = this.props.style;
                 this.setState({
+                    location: {
+                        right: this.props.style.right + 170 + 300 * displacement.x,
+                        top: this.props.style.top - 5 + 300 * displacement.y,
+                    },
+                    inspectStyle: {
+                        right: this.props.style.right + 170 + 300 * displacement.x,
+                        top: this.props.style.top - 5 + 300 * displacement.y,
+                    },
                     imageStyle: {
                         height: 180 + 'px',
                         width: 180 + 'px',
@@ -67,10 +92,6 @@ var Node = React.createClass({
                         right: style.right - 15 + 300 * displacement.x + 'px',
                         top: style.top - 15 + 300 * displacement.y + 'px',
                     },
-                    /*inspectStyle: {
-                        right: style.right + 170 + 300 * displacement.x + 'px',
-                        top: style.top + 5 + 300 * displacement.y + 'px',
-                    },*/
                 });
                 //fired to proliferate before rerender
                 right = this.props.style.right + 300 * this.props.displacement(this.props.node, this.state.parent).x;
@@ -88,6 +109,14 @@ var Node = React.createClass({
             }
             else {
                 this.setState({
+                    location: {
+                        right: this.props.style.right + 170,
+                        top: this.props.style.top - 5,
+                    },
+                    inspectStyle: {
+                        right: this.props.style.right + 170,
+                        top: this.props.style.top - 5,
+                    },
                     style: {
                         height: 180 + 'px',
                         width: 180 + 'px',
@@ -103,10 +132,6 @@ var Node = React.createClass({
                         backgroundSize: 'cover',
                         opacity: '0.65',
                     },
-                    /*inspectStyle: {
-                        right: this.props.style.right + 170 + 'px',
-                        top: this.props.style.top + 5 + 'px',
-                    },*/
                 });
             }
 
@@ -134,6 +159,9 @@ var Node = React.createClass({
                         <button onClick={this.remove}
                                 className="btn btn-danger glyphicon glyphicon-trash"/>        
                     </span>
+                </div>
+                <div className="inspect" style={this.state.inspectStyle}>
+                    <p>{this.props.details}</p>
                 </div>
             </div>
         );
