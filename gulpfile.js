@@ -9,9 +9,9 @@ var streamify = require('gulp-streamify');
 var gutil = require('gulp-util');
 
 var path = {
-  HTML: 'src/index.html',
-  CSS: 'src/css/style.css',
-  HTMLCSS: ['src/index.html', 'src/css/style.css'],
+  HTML: ['src/index.html', 'src/tangl.html'],
+  CSS: ['src/css/style.css', 'src/css/form.css'],
+  HTMLCSS: ['src/index.html', 'src/tangl.html', 'src/css/style.css', 'src/css/form.css'],
   MINIFIED_OUT: 'build.min.js',
   OUT: 'build.js',
   DEST: 'dist',

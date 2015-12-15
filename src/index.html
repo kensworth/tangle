@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <!-- jQuery, jQuery.ui -->
-    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/form.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <script type="text/javascript">
+        function search() {
+            location.href="./tangl.html";
+        }
+        
+        $('form').each(function() {
+            $(this).find('input').keyup(function(e) {
+                // Enter pressed?
+                if(e.which == 10 || e.which == 13) {
+                    this.form.submit();
+                }
+            });
+        $(this).find('input[type=submit]').hide();
 
-    <!-- Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
-    <!-- React -->
-    <script src="https://fb.me/react-0.13.3.min.js"></script>
-
-    <!--Custom Styles -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <title>Tangl</title>
-</head>
-<body>
-    <div id="app"></div>
-    <script src="js/build.js"></script>
-</body>
+    </script>
+    <title>TANGL</title>
+    <body>
+        <img src="./img/tangl.jpg">
+        <form>
+            <input type="text" id="search" placeholder="What topic would you like to explore?" required>
+            <input type="submit" value="Search" onclick="search();" style="position: absolute; left: -9999px"/>
+        </form>
+    </body>
 </html>
