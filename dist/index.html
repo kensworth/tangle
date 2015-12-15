@@ -2,27 +2,20 @@
 <html>
 <link href="css/form.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery.min.js"></script>
-    <script type="text/javascript">
-        function search() {
-            location.href="./tangl.html";
-        }
-        
-        $('form').each(function() {
-            $(this).find('input').keyup(function(e) {
-                // Enter pressed?
-                if(e.which == 10 || e.which == 13) {
-                    this.form.submit();
-                }
-            });
-        $(this).find('input[type=submit]').hide();
-
-    </script>
     <title>TANGL</title>
     <body>
         <img src="./img/tangl.jpg">
         <form>
-            <input type="text" id="search" placeholder="What topic would you like to explore?" required>
-            <input type="submit" value="Search" onclick="search();" style="position: absolute; left: -9999px"/>
+            <input type="text" id="search" class="search" placeholder="What topic would you like to explore?">
+            <input type="submit" value="Submit" style="position: absolute; left: -9999px">
         </form>
+        <script>
+            document.getElementById('search').addEventListener('keypress', function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                location.href="./tangl.html"
+            }
+        });
+        </script>
     </body>
 </html>

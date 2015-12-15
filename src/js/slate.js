@@ -50,6 +50,7 @@ var Slate = React.createClass({
         $(this.getDOMNode()).draggable();
         this.height = $("#slate").height();
         this.width = $("#slate").width();
+        this.add(null, null, null, 1);
     },
     nextId: function() {
         this.uniqueId = this.uniqueId || 0;
@@ -167,8 +168,6 @@ var Slate = React.createClass({
         return (
             <div className="slate" id="slate">
                 {this.state.nodes.map(this.eachNode)}
-                <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
-                    onClick={this.add.bind(null, null, null, null, 1)}/>
             </div>
 
         );
